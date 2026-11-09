@@ -9,28 +9,69 @@ if (!supabaseUrl || !publishableKey) {
   );
 }
 
-const supabase = createClient(supabaseUrl, publishableKey);
+export const supabase = createClient(supabaseUrl, publishableKey);
 
 export async function getTributes() {
-  const { data, error } = await supabase
-    .from('tributes')
-    .select('id, name, message, created_at')
-    .order('created_at', { ascending: false });
+  try {
+    const { data, error } = await supabase
+      .from('tributes')
+      .select('id, name, place, message, created_at')
+      .order('created_at', { ascending: false });
 
-  if (error) throw error;
-  return Array.isArray(data) ? data : [];
+    if (error) {
+      // If 'place' column does not exist in schema yet, fallback to baseline query
+      if (error.message?.includes('place') || error.code === '42703') {
+        const fallback = await supabase
+          .from('tributes')
+          .select('id, name, message, created_at')
+          .order('created_at', { ascending: false });
+        if (fallback.error) throw fallback.error;
+        return Array.isArray(fallback.data) ? fallback.data : [];
+      }
+      throw error;
+    }
+    return Array.isArray(data) ? data : [];
+  } catch (err) {
+    console.error('Error fetching tributes:', err);
+    throw err;
+  }
 }
 
-export async function createTribute({ name, message }) {
-  const { data, error } = await supabase
-    .from('tributes')
-    .insert({
-      name: name.trim(),
-      message: message.trim(),
-    })
-    .select('id, name, message, created_at')
-    .single();
+export async function createTribute({ name, place, message }) {
+  const payload = {
+    name: name.trim(),
+    message: message.trim(),
+  };
 
-  if (error) throw error;
-  return data;
+  const cleanPlace = place ? place.trim() : '';
+  if (cleanPlace && cleanPlace.toLowerCase() !== 'not specified') {
+    payload.place = cleanPlace;
+  }
+
+  try {
+    const { data, error } = await supabase
+      .from('tributes')
+      .insert(payload)
+      .select('id, name, place, message, created_at')
+      .single();
+
+    if (error) {
+      // If 'place' column does not exist in user schema, retry without it
+      if (payload.place && (error.message?.includes('place') || error.code === '42703')) {
+        delete payload.place;
+        const fallback = await supabase
+          .from('tributes')
+          .insert(payload)
+          .select('id, name, message, created_at')
+          .single();
+        if (fallback.error) throw fallback.error;
+        return fallback.data;
+      }
+      throw error;
+    }
+    return data;
+  } catch (err) {
+    console.error('Error creating tribute:', err);
+    throw err;
+  }
 }

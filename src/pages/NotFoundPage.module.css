@@ -1,1 +1,39 @@
-.page{min-height:50vh;display:grid;place-items:center;align-content:center;text-align:center;padding:40px}.page h1{font:700 44px Georgia,serif;color:#2d202c;margin:0 0 10px}.page p{font:15px Arial,sans-serif;color:#766b75}.page a{color:#b44589;font:700 14px Arial,sans-serif}
+.page {
+  min-height: 60vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 60px 24px;
+  background: #f7f4ed;
+}
+
+.page h1 {
+  font: 500 40px/1.2 Georgia, serif;
+  color: #303a5d;
+  margin: 0 0 12px;
+}
+
+.page p {
+  font: 400 16px/1.6 'DM Sans', Arial, sans-serif;
+  color: #74736e;
+  margin: 0 0 24px;
+}
+
+.page a {
+  display: inline-flex;
+  align-items: center;
+  padding: 12px 24px;
+  background: #303a5d;
+  color: #fffdf8;
+  border-radius: 4px;
+  text-decoration: none;
+  font: 600 13px 'DM Sans', Arial, sans-serif;
+  letter-spacing: 0.03em;
+  transition: background 0.2s ease;
+}
+
+.page a:hover {
+  background: #232c49;
+}

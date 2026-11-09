@@ -1,18 +1,86 @@
-import { ExternalLink, Images, Maximize2 } from 'lucide-react';
-import { Link } from 'react-router-dom';
+import { useState, useEffect, useCallback } from 'react';
+import { ExternalLink, Images, Maximize2, X, ChevronLeft, ChevronRight, RefreshCw } from 'lucide-react';
 import PageIntro from '../components/common/PageIntro';
-import { memorial } from '../data/memorial';
 import { mediaConfig } from '../config/media';
+import { getMemorialPhotos } from '../services/photoService';
 import styles from './PhotosPage.module.css';
 
 export default function PhotosPage() {
-  const photos = Array.isArray(memorial.photos) ? memorial.photos : [];
+  const [photos, setPhotos] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState('');
+  const [selectedIndex, setSelectedIndex] = useState(null);
+  const [brokenImageIds, setBrokenImageIds] = useState(new Set());
+
+  const loadPhotos = useCallback(async () => {
+    try {
+      setLoading(true);
+      setError('');
+      const data = await getMemorialPhotos();
+      setPhotos(Array.isArray(data) ? data : []);
+    } catch (err) {
+      console.error(err);
+      setError('Unable to load photographs at this time.');
+    } finally {
+      setLoading(false);
+    }
+  }, []);
+
+  useEffect(() => {
+    loadPhotos();
+  }, [loadPhotos]);
+
+  // Handle broken images gracefully so broken icons are never displayed
+  function handleImageError(id) {
+    setBrokenImageIds((prev) => new Set(prev).add(id));
+  }
+
+  const validPhotos = photos.filter((p) => !brokenImageIds.has(p.id));
+
+  // Lightbox keyboard navigation
+  const openLightbox = (index) => setSelectedIndex(index);
+  const closeLightbox = () => setSelectedIndex(null);
+
+  const prevImage = useCallback(() => {
+    if (validPhotos.length === 0) return;
+    setSelectedIndex((current) =>
+      current === 0 ? validPhotos.length - 1 : current - 1
+    );
+  }, [validPhotos.length]);
+
+  const nextImage = useCallback(() => {
+    if (validPhotos.length === 0) return;
+    setSelectedIndex((current) =>
+      current === validPhotos.length - 1 ? 0 : current + 1
+    );
+  }, [validPhotos.length]);
+
+  useEffect(() => {
+    if (selectedIndex === null) return;
+
+    function handleKeyDown(e) {
+      if (e.key === 'Escape') closeLightbox();
+      if (e.key === 'ArrowLeft') prevImage();
+      if (e.key === 'ArrowRight') nextImage();
+    }
+
+    window.addEventListener('keydown', handleKeyDown);
+    document.body.style.overflow = 'hidden';
+
+    return () => {
+      window.removeEventListener('keydown', handleKeyDown);
+      document.body.style.overflow = '';
+    };
+  }, [selectedIndex, prevImage, nextImage]);
+
+  const activePhoto = selectedIndex !== null ? validPhotos[selectedIndex] : null;
 
   return (
     <>
       <PageIntro
+        eyebrow="Photo Archive"
         title="Photographs"
-        text="A collection of photographs preserving the people, places, and moments that remain part of Prof. Rajaguru’s story."
+        text="A collection of photographs preserving the moments, fellowship, and quiet joy that remain part of Prof. Rajaguru’s story."
       />
 
       <section className={styles.section}>
@@ -28,54 +96,154 @@ export default function PhotosPage() {
               target="_blank"
               rel="noreferrer"
             >
-              Open photo archive <ExternalLink size={15} />
+              Open OneDrive archive <ExternalLink size={15} />
             </a>
           </div>
 
-          {photos.length ? (
-            <div className={styles.grid}>
-              {photos.map((photo, index) => (
-                <Link
-                  key={photo.id || photo.src || index}
-                  to={`/photos/image/${encodeURIComponent(photo.id || index)}`}
-                  className={`${styles.card} ${index === 0 ? styles.featured : ''}`}
-                >
-                  <img
-                    src={photo.src || photo.url}
-                    alt={photo.alt || photo.caption || 'Memorial photograph'}
-                    loading={index < 4 ? 'eager' : 'lazy'}
-                  />
-                  <div className={styles.overlay}>
-                    <span>{photo.caption || photo.title || 'A cherished memory'}</span>
-                    <Maximize2 size={16} />
-                  </div>
-                </Link>
+          {loading && (
+            <div className={styles.loadingGrid}>
+              {Array.from({ length: 6 }).map((_, i) => (
+                <div
+                  key={i}
+                  className={`${styles.skeletonCard} ${i === 0 ? styles.skeletonFeatured : ''}`}
+                />
               ))}
             </div>
-          ) : (
+          )}
+
+          {!loading && error && (
+            <div className={styles.errorBox}>
+              <p>{error}</p>
+              <button onClick={loadPhotos} className={styles.retryButton}>
+                <RefreshCw size={15} /> Try again
+              </button>
+            </div>
+          )}
+
+          {!loading && !error && validPhotos.length === 0 && (
             <div className={styles.empty}>
-              <Images size={30} />
+              <Images size={34} />
               <h3>Photographs are being prepared</h3>
               <p>
-                The shared photo archive is available through the button above.
+                The shared OneDrive photo archive is currently being updated.
               </p>
-              <a href={mediaConfig.oneDriveFolderUrl} target="_blank" rel="noreferrer">
-                Open the photo archive <ExternalLink size={15} />
+              <a
+                href={mediaConfig.oneDriveFolderUrl}
+                target="_blank"
+                rel="noreferrer"
+                className={styles.archiveButton}
+              >
+                Open OneDrive photo folder <ExternalLink size={15} />
               </a>
             </div>
           )}
 
+          {!loading && !error && validPhotos.length > 0 && (
+            <div className={styles.grid}>
+              {validPhotos.map((photo, index) => {
+                // Editorial composition: first image is featured, fifth image is wide
+                const isFeatured = index === 0;
+                const isWide = index === 4;
+
+                return (
+                  <button
+                    key={photo.id || index}
+                    type="button"
+                    onClick={() => openLightbox(index)}
+                    className={`${styles.card} ${isFeatured ? styles.featured : ''} ${
+                      isWide ? styles.wide : ''
+                    }`}
+                    aria-label={`View photograph: ${photo.caption || photo.title}`}
+                  >
+                    <img
+                      src={photo.src}
+                      alt={photo.alt || photo.caption || 'Memorial photograph'}
+                      loading={index < 4 ? 'eager' : 'lazy'}
+                      onError={() => handleImageError(photo.id)}
+                    />
+                    <div className={styles.overlay}>
+                      <span className={styles.caption}>
+                        {photo.caption || photo.title || 'A cherished memory'}
+                      </span>
+                      <span className={styles.zoomIcon} aria-hidden="true">
+                        <Maximize2 size={16} />
+                      </span>
+                    </div>
+                  </button>
+                );
+              })}
+            </div>
+          )}
+
           <div className={styles.note}>
-            <strong>Photo archive</strong>
+            <strong>OneDrive photo archive</strong>
             <span>
-              The supplied OneDrive folder is kept as the source archive. Public
-              websites cannot reliably enumerate a private OneDrive folder without
-              Microsoft Graph authentication, so the archive link remains available
-              until a public/API-backed image feed is configured.
+              All original high-resolution photographs are preserved in the family’s OneDrive archive.
+              To upload or share additional memorial photographs with the family, use the OneDrive archive link above.
             </span>
           </div>
         </div>
       </section>
+
+      {/* Fullscreen Interactive Lightbox Modal */}
+      {activePhoto && (
+        <div
+          className={styles.lightbox}
+          onClick={closeLightbox}
+          role="dialog"
+          aria-modal="true"
+          aria-label="Image lightbox"
+        >
+          <div
+            className={styles.lightboxContent}
+            onClick={(e) => e.stopPropagation()}
+          >
+            <button
+              className={styles.closeButton}
+              onClick={closeLightbox}
+              aria-label="Close lightbox"
+            >
+              <X size={22} />
+            </button>
+
+            {validPhotos.length > 1 && (
+              <>
+                <button
+                  className={`${styles.navButton} ${styles.prevButton}`}
+                  onClick={prevImage}
+                  aria-label="Previous image"
+                >
+                  <ChevronLeft size={28} />
+                </button>
+                <button
+                  className={`${styles.navButton} ${styles.nextButton}`}
+                  onClick={nextImage}
+                  aria-label="Next image"
+                >
+                  <ChevronRight size={28} />
+                </button>
+              </>
+            )}
+
+            <div className={styles.imageContainer}>
+              <img
+                src={activePhoto.src}
+                alt={activePhoto.alt || activePhoto.caption}
+                className={styles.lightboxImage}
+              />
+            </div>
+
+            <div className={styles.lightboxMeta}>
+              <p className={styles.lightboxCaption}>
+                {activePhoto.caption || activePhoto.title}
+              </p>
+              <span className={styles.lightboxCounter}>
+                {selectedIndex + 1} / {validPhotos.length}
+              </span>
+            </div>
+          </div>
+        </div>
+      )}
     </>
   );
 }

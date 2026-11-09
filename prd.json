@@ -48,7 +48,7 @@
     {
       "id": "TASK-005",
       "title": "OneDrive Photo Gallery Enhancements & Lightbox",
-      "status": "pending",
+      "status": "done",
       "priority": "medium",
       "acceptanceCriteria": [
         "PhotosPage renders gallery with object-fit: cover",
@@ -59,7 +59,7 @@
     {
       "id": "TASK-006",
       "title": "YouTube Recordings & Detail View Optimization",
-      "status": "pending",
+      "status": "done",
       "priority": "medium",
       "acceptanceCriteria": [
         "Two video IDs QFhyRZfiRnI and CPZcEnu2Ab4 play in 16:9 frames",
@@ -69,7 +69,7 @@
     {
       "id": "TASK-007",
       "title": "Timeline Winding SVG & Scroll Reveal Verification",
-      "status": "pending",
+      "status": "done",
       "priority": "medium",
       "acceptanceCriteria": [
         "Timeline tab visible in navigation",

@@ -1,86 +1,173 @@
 .welcome {
-  padding: 72px 20px 82px;
-  background: #fff;
+  padding: 80px 20px 88px;
+  background: #f7f4ed;
 }
+
 .copy {
-  max-width: 940px;
+  max-width: 860px;
   margin: 0 auto;
-  text-align: left;
+  text-align: center;
 }
+
 .copy p {
-  font:
-    400 17px/1.7 Arial,
-    sans-serif;
-  color: #5f565e;
+  font: 400 17px/1.8 'DM Sans', Arial, sans-serif;
+  color: #74736e;
   margin: 0 0 20px;
 }
+
 .cards {
   max-width: 1040px;
-  margin: 45px auto 0;
+  margin: 50px auto 0;
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  gap: 18px;
+  gap: 20px;
 }
+
 .card {
-  padding: 22px 20px;
-  background: #fbf7fa;
-  border: 1px solid #eee3eb;
+  padding: 26px 24px;
+  background: #fffdf8;
+  border: 1px solid rgba(48, 58, 93, 0.1);
+  border-radius: 4px;
   text-decoration: none;
-  color: #332731;
+  color: #303a5d;
   display: flex;
   align-items: center;
-  gap: 15px;
-  transition: 0.25s;
+  gap: 16px;
+  transition: all 0.25s ease;
+  box-shadow: 0 10px 28px rgba(48, 58, 93, 0.04);
 }
+
 .card:hover {
-  transform: translateY(-4px);
-  box-shadow: 0 14px 30px rgba(54, 27, 47, 0.08);
+  transform: translateY(-3px);
+  box-shadow: 0 16px 36px rgba(48, 58, 93, 0.08);
+  border-color: rgba(102, 117, 181, 0.3);
 }
+
 .card > svg:first-child {
-  color: #c84fa6;
+  color: #b08c43;
+  flex-shrink: 0;
 }
+
 .card span {
   flex: 1;
 }
+
 .card strong {
   display: block;
-  font:
-    700 16px Georgia,
-    serif;
+  font: 500 17px/1.2 Georgia, serif;
+  color: #303a5d;
 }
+
 .card small {
   display: block;
-  color: #887d86;
-  font:
-    12px Arial,
-    sans-serif;
+  color: #74736e;
+  font: 400 12px/1.4 'DM Sans', Arial, sans-serif;
   margin-top: 4px;
 }
+
 .card > svg:last-child {
-  color: #a99ca6;
+  color: #6675b5;
   width: 16px;
+  transition: transform 0.2s ease;
 }
+
+.card:hover > svg:last-child {
+  transform: translateX(3px);
+}
+
 .photos {
-  padding: 82px 20px;
-  background: #fbf8fb;
+  padding: 85px 20px 95px;
+  background: #f7f4ed;
 }
+
 .center {
   text-align: center;
-  margin-top: 30px;
+  margin-top: 36px;
 }
+
 .outline {
   display: inline-flex;
   align-items: center;
-  gap: 7px;
-  border: 1px solid #c84fa6;
-  color: #a94386;
-  padding: 11px 20px;
-  border-radius: 999px;
+  gap: 8px;
+  border: 1px solid #303a5d;
+  color: #303a5d;
+  background: #fffdf8;
+  padding: 12px 26px;
+  border-radius: 4px;
   text-decoration: none;
-  font:
-    700 13px Arial,
-    sans-serif;
+  font: 600 13px 'DM Sans', Arial, sans-serif;
+  letter-spacing: 0.03em;
+  transition: all 0.2s ease;
 }
+
+.outline:hover {
+  background: #303a5d;
+  color: #fffdf8;
+}
+
+.tributeCta {
+  padding: 60px 20px;
+  background:
+    radial-gradient(circle at 50% 50%, rgba(255, 253, 248, 0.9), transparent 70%),
+    linear-gradient(135deg, #cbd4ca 0%, #dfe5dc 50%, #bfc9e5 100%);
+  border-top: 1px solid rgba(48, 58, 93, 0.08);
+  border-bottom: 1px solid rgba(48, 58, 93, 0.08);
+}
+
+.tributeCtaInner {
+  width: min(1040px, 100%);
+  margin: 0 auto;
+  padding: 38px 44px;
+  border: 1px solid rgba(48, 58, 93, 0.1);
+  border-radius: 6px;
+  background: #fffdf8;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 30px;
+  box-shadow: 0 16px 40px rgba(48, 58, 93, 0.06);
+}
+
+.tributeCtaEyebrow {
+  display: block;
+  margin-bottom: 8px;
+  color: #6675b5;
+  font: 600 11px/1 'DM Sans', Arial, sans-serif;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+}
+
+.tributeCta h2 {
+  margin: 0;
+  color: #303a5d;
+  font: 500 clamp(24px, 3vw, 32px)/1.2 Georgia, serif;
+}
+
+.tributeCta p {
+  margin: 8px 0 0;
+  color: #74736e;
+  font: 400 15px/1.6 'DM Sans', Arial, sans-serif;
+}
+
+.tributeCtaButton {
+  flex-shrink: 0;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 13px 26px;
+  border-radius: 4px;
+  background: #303a5d;
+  color: #fffdf8;
+  text-decoration: none;
+  font: 600 13px 'DM Sans', Arial, sans-serif;
+  letter-spacing: 0.03em;
+  transition: all 0.2s ease;
+}
+
+.tributeCtaButton:hover {
+  background: #232c49;
+}
+
 @media (max-width: 800px) {
   .cards {
     grid-template-columns: 1fr;
@@ -90,67 +177,6 @@
     padding-top: 55px;
     padding-bottom: 60px;
   }
-}
-
-.tributeCta {
-  padding: 55px 20px;
-  background: #f8f2f7;
-}
-
-.tributeCtaInner {
-  width: min(1040px, 100%);
-  margin: 0 auto;
-  padding: 34px 38px;
-  border: 1px solid #eadfea;
-  border-radius: 16px;
-  background: #fff;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 30px;
-  box-shadow: 0 14px 35px rgba(54, 27, 47, 0.06);
-}
-
-.tributeCtaEyebrow {
-  display: block;
-  margin-bottom: 8px;
-  color: #bd4c98;
-  font: 700 11px Arial, sans-serif;
-  letter-spacing: 0.16em;
-  text-transform: uppercase;
-}
-
-.tributeCta h2 {
-  margin: 0;
-  color: #2d202c;
-  font: 700 clamp(25px, 3vw, 34px)/1.15 Georgia, serif;
-}
-
-.tributeCta p {
-  margin: 9px 0 0;
-  color: #776c75;
-  font: 14px/1.6 Arial, sans-serif;
-}
-
-.tributeCtaButton {
-  flex-shrink: 0;
-  display: inline-flex;
-  align-items: center;
-  gap: 8px;
-  padding: 13px 20px;
-  border-radius: 999px;
-  background: #c84fa6;
-  color: #fff;
-  text-decoration: none;
-  font: 700 13px Arial, sans-serif;
-  transition: 0.2s ease;
-}
-
-.tributeCtaButton:hover {
-  background: #b74392;
-}
-
-@media (max-width: 760px) {
   .tributeCtaInner {
     padding: 26px 22px;
     align-items: flex-start;

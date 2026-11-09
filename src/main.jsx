@@ -1,6 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
-import { BrowserRouter, Route, Routes } from 'react-router-dom';
+import { BrowserRouter, Route, Routes, Navigate } from 'react-router-dom';
 import MemorialLayout from './layouts/MemorialLayout';
 import HomePage from './pages/HomePage';
 import TributesPage from './pages/TributesPage';
@@ -26,6 +26,13 @@ ReactDOM.createRoot(document.getElementById('root')).render(
           <Route path="/videos" element={<VideosPage />} />
           <Route path="/videos/:videoId" element={<VideoDetailPage />} />
           <Route path="/timeline" element={<TimelinePage />} />
+
+          {/* Legacy & Convenience Redirects */}
+          <Route path="/gallery" element={<Navigate to="/photos" replace />} />
+          <Route path="/photos/images" element={<Navigate to="/photos" replace />} />
+          <Route path="/photos/image/:id" element={<Navigate to="/photos" replace />} />
+          <Route path="/memorial" element={<Navigate to="/" replace />} />
+
           <Route path="*" element={<NotFoundPage />} />
         </Route>
       </Routes>
