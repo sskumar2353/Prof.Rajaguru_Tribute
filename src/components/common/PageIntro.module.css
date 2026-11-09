@@ -1,0 +1,22 @@
+.intro {
+  padding: 72px 20px 54px;
+  background:
+    radial-gradient(circle at 20% 10%, rgba(191, 201, 229, .34), transparent 28%),
+    linear-gradient(180deg, #fffdf8 0%, #f7f4ed 100%);
+  text-align: center;
+}
+.intro h1 {
+  font: 600 46px/1.1 Georgia, serif;
+  color: #303a5d;
+  margin: 0 0 14px;
+}
+.intro p {
+  max-width: 720px;
+  margin: auto;
+  color: #77766f;
+  font: 400 17px/1.7 'DM Sans', Arial, sans-serif;
+}
+@media(max-width:700px){
+  .intro{padding:50px 18px 38px}
+  .intro h1{font-size:35px}
+}

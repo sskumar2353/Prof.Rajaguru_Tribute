@@ -1,0 +1,134 @@
+.page {
+  min-height: 100vh;
+  background: #fafcfc;
+}
+
+.hero {
+  position: relative;
+  min-height: 430px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+
+  background:
+    linear-gradient(
+      135deg,
+      rgba(103, 177, 195, 0.95),
+      rgba(188, 226, 232, 0.95)
+    );
+}
+
+.overlay {
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(
+      circle at 50% 30%,
+      rgba(255, 255, 255, 0.3),
+      transparent 55%
+    );
+}
+
+.heroContent {
+  position: relative;
+  z-index: 2;
+  max-width: 800px;
+  padding: 80px 24px;
+  text-align: center;
+  color: white;
+}
+
+.label,
+.sectionLabel {
+  display: block;
+  margin-bottom: 16px;
+  font-size: 0.78rem;
+  font-weight: 600;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+}
+
+.heroContent h1 {
+  margin: 0;
+  font-family: Georgia, 'Times New Roman', serif;
+  font-size: clamp(2.5rem, 6vw, 5rem);
+  font-weight: 400;
+  line-height: 1.08;
+}
+
+.heroContent p {
+  max-width: 650px;
+  margin: 24px auto 0;
+  font-size: 1.05rem;
+  line-height: 1.8;
+}
+
+.content {
+  padding: 90px 24px;
+}
+
+.inner {
+  width: min(850px, 100%);
+  margin: 0 auto;
+  text-align: center;
+}
+
+.sectionLabel {
+  color: #6caeba;
+}
+
+.inner h2 {
+  margin: 0;
+  color: #263d43;
+  font-family: Georgia, 'Times New Roman', serif;
+  font-size: clamp(2rem, 4vw, 3.3rem);
+  font-weight: 400;
+}
+
+.divider {
+  width: 60px;
+  height: 1px;
+  margin: 28px auto 50px;
+  background: #8bbdc7;
+}
+
+.eulogy {
+  text-align: left;
+  color: #52676d;
+  font-family: Georgia, 'Times New Roman', serif;
+  font-size: 1.12rem;
+  line-height: 2;
+}
+
+.eulogy p {
+  margin: 0 0 28px;
+}
+
+.eulogy strong {
+  color: #304c54;
+}
+
+.closing {
+  margin-top: 50px !important;
+  text-align: center;
+  color: #4d8996;
+  font-size: 1.25rem;
+  font-style: italic;
+  line-height: 2;
+}
+
+@media (max-width: 600px) {
+  .hero {
+    min-height: 360px;
+  }
+
+  .content {
+    padding: 60px 20px;
+  }
+
+  .eulogy {
+    font-size: 1rem;
+    line-height: 1.85;
+  }
+}

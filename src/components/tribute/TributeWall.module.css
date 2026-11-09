@@ -1,0 +1,1 @@
+.grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:22px}.loading,.empty{text-align:center;padding:55px 20px;color:#837681;font:15px Arial,sans-serif;border:1px dashed #ddd0db;background:#fff}@media(max-width:950px){.grid{grid-template-columns:repeat(2,minmax(0,1fr))}}@media(max-width:650px){.grid{grid-template-columns:1fr}}

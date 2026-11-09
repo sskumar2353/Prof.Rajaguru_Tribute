@@ -1,0 +1,130 @@
+.form {
+  scroll-margin-top: 90px;
+  background: #fff;
+  border: 1px solid #eadfea;
+  border-radius: 8px;
+  box-shadow: 0 18px 50px rgba(55, 29, 48, 0.08);
+  padding: 34px;
+  max-width: 760px;
+  margin: 0 auto;
+}
+
+.header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  border-bottom: 1px solid #eee5ec;
+  padding-bottom: 22px;
+  margin-bottom: 24px;
+}
+
+.header span {
+  font: 700 11px Arial, sans-serif;
+  text-transform: uppercase;
+  letter-spacing: 0.16em;
+  color: #bd4c98;
+}
+
+.header h3 {
+  font: 700 30px/1.1 Georgia, serif;
+  color: #2d202c;
+  margin: 8px 0 0;
+}
+
+.headerIcon {
+  color: #c84fa6;
+  margin-top: 5px;
+}
+
+.fields {
+  display: grid;
+  gap: 18px;
+}
+
+.fields label {
+  font: 600 13px Arial, sans-serif;
+  color: #4e444d;
+}
+
+.fields input,
+.fields textarea {
+  display: block;
+  width: 100%;
+  box-sizing: border-box;
+  margin-top: 8px;
+  border: 1px solid #ddd3db;
+  border-radius: 4px;
+  padding: 13px 14px;
+  font: 400 15px Arial, sans-serif;
+  color: #2f2730;
+  background: #fff;
+  outline: none;
+}
+
+.fields textarea {
+  resize: vertical;
+  min-height: 150px;
+}
+
+.fields input:focus,
+.fields textarea:focus {
+  border-color: #c84fa6;
+  box-shadow: 0 0 0 3px rgba(200, 79, 166, 0.08);
+}
+
+.honeypot {
+  position: absolute !important;
+  left: -9999px !important;
+}
+
+.form button {
+  margin-top: 20px;
+  border: 0;
+  border-radius: 999px;
+  background: #c84fa6;
+  color: #fff;
+  padding: 13px 22px;
+  font: 700 13px Arial, sans-serif;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  cursor: pointer;
+}
+
+.form button:hover:not(:disabled) {
+  background: #b74392;
+}
+
+.form button:disabled {
+  opacity: 0.6;
+  cursor: wait;
+}
+
+.error {
+  color: #a72f2f;
+  font: 13px Arial, sans-serif;
+}
+
+.success {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  color: #2b7a55;
+  font: 13px Arial, sans-serif;
+}
+
+.note {
+  color: #8c818b;
+  font: 11px/1.5 Arial, sans-serif;
+  margin: 13px 0 0;
+}
+
+@media (max-width: 600px) {
+  .form {
+    padding: 24px 18px;
+  }
+
+  .header h3 {
+    font-size: 25px;
+  }
+}

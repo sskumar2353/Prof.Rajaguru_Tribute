@@ -1,0 +1,159 @@
+.welcome {
+  padding: 72px 20px 82px;
+  background: #fff;
+}
+.copy {
+  max-width: 940px;
+  margin: 0 auto;
+  text-align: left;
+}
+.copy p {
+  font:
+    400 17px/1.7 Arial,
+    sans-serif;
+  color: #5f565e;
+  margin: 0 0 20px;
+}
+.cards {
+  max-width: 1040px;
+  margin: 45px auto 0;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 18px;
+}
+.card {
+  padding: 22px 20px;
+  background: #fbf7fa;
+  border: 1px solid #eee3eb;
+  text-decoration: none;
+  color: #332731;
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  transition: 0.25s;
+}
+.card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 14px 30px rgba(54, 27, 47, 0.08);
+}
+.card > svg:first-child {
+  color: #c84fa6;
+}
+.card span {
+  flex: 1;
+}
+.card strong {
+  display: block;
+  font:
+    700 16px Georgia,
+    serif;
+}
+.card small {
+  display: block;
+  color: #887d86;
+  font:
+    12px Arial,
+    sans-serif;
+  margin-top: 4px;
+}
+.card > svg:last-child {
+  color: #a99ca6;
+  width: 16px;
+}
+.photos {
+  padding: 82px 20px;
+  background: #fbf8fb;
+}
+.center {
+  text-align: center;
+  margin-top: 30px;
+}
+.outline {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  border: 1px solid #c84fa6;
+  color: #a94386;
+  padding: 11px 20px;
+  border-radius: 999px;
+  text-decoration: none;
+  font:
+    700 13px Arial,
+    sans-serif;
+}
+@media (max-width: 800px) {
+  .cards {
+    grid-template-columns: 1fr;
+  }
+  .welcome,
+  .photos {
+    padding-top: 55px;
+    padding-bottom: 60px;
+  }
+}
+
+.tributeCta {
+  padding: 55px 20px;
+  background: #f8f2f7;
+}
+
+.tributeCtaInner {
+  width: min(1040px, 100%);
+  margin: 0 auto;
+  padding: 34px 38px;
+  border: 1px solid #eadfea;
+  border-radius: 16px;
+  background: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 30px;
+  box-shadow: 0 14px 35px rgba(54, 27, 47, 0.06);
+}
+
+.tributeCtaEyebrow {
+  display: block;
+  margin-bottom: 8px;
+  color: #bd4c98;
+  font: 700 11px Arial, sans-serif;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+}
+
+.tributeCta h2 {
+  margin: 0;
+  color: #2d202c;
+  font: 700 clamp(25px, 3vw, 34px)/1.15 Georgia, serif;
+}
+
+.tributeCta p {
+  margin: 9px 0 0;
+  color: #776c75;
+  font: 14px/1.6 Arial, sans-serif;
+}
+
+.tributeCtaButton {
+  flex-shrink: 0;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 13px 20px;
+  border-radius: 999px;
+  background: #c84fa6;
+  color: #fff;
+  text-decoration: none;
+  font: 700 13px Arial, sans-serif;
+  transition: 0.2s ease;
+}
+
+.tributeCtaButton:hover {
+  background: #b74392;
+}
+
+@media (max-width: 760px) {
+  .tributeCtaInner {
+    padding: 26px 22px;
+    align-items: flex-start;
+    flex-direction: column;
+  }
+}
