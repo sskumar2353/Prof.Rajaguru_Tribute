@@ -1,0 +1,81 @@
+{
+  "project": "Prof. Rajaguru Memorial Tribute",
+  "version": "1.0.0",
+  "description": "Autonomous task loop for the memorial tribute web application",
+  "tasks": [
+    {
+      "id": "TASK-001",
+      "title": "Architectural Foundation & Clean Build Verification",
+      "status": "done",
+      "priority": "high",
+      "acceptanceCriteria": [
+        "Vite builds without errors",
+        "React Router routes are active for /, /tributes, /photos, /videos, /timeline, /eulogy",
+        "Header brand shows strictly 'Prof. Rajaguru'"
+      ]
+    },
+    {
+      "id": "TASK-002",
+      "title": "CodeRabbit Automated Review Integration",
+      "status": "done",
+      "priority": "high",
+      "acceptanceCriteria": [
+        ".coderabbit.yaml is present with custom tone and path instructions",
+        "Marketplace plugin card provided for 1-click user installation"
+      ]
+    },
+    {
+      "id": "TASK-003",
+      "title": "Get Shit Done (GSD) Framework Scaffolding",
+      "status": "done",
+      "priority": "high",
+      "acceptanceCriteria": [
+        ".planning/ directory contains PROJECT.md, REQUIREMENTS.md, ROADMAP.md, STATE.md",
+        ".agent/skills/gsd/SKILL.md is registered"
+      ]
+    },
+    {
+      "id": "TASK-004",
+      "title": "Ralph Loop Runner Scripts & Persistence Setup",
+      "status": "done",
+      "priority": "high",
+      "acceptanceCriteria": [
+        "prd.json and progress.txt exist in workspace root",
+        "scripts/ralph.ps1 and scripts/ralph.sh are executable",
+        ".agent/skills/ralph-loop/SKILL.md is registered"
+      ]
+    },
+    {
+      "id": "TASK-005",
+      "title": "OneDrive Photo Gallery Enhancements & Lightbox",
+      "status": "done",
+      "priority": "medium",
+      "acceptanceCriteria": [
+        "PhotosPage renders gallery with object-fit: cover",
+        "Fullscreen lightbox modal supports keyboard/close events",
+        "Clear documentation for Supabase Edge Function MS Graph proxy"
+      ]
+    },
+    {
+      "id": "TASK-006",
+      "title": "YouTube Recordings & Detail View Optimization",
+      "status": "done",
+      "priority": "medium",
+      "acceptanceCriteria": [
+        "Two video IDs QFhyRZfiRnI and CPZcEnu2Ab4 play in 16:9 frames",
+        "Dedicated video detail pages /videos/:videoId function cleanly"
+      ]
+    },
+    {
+      "id": "TASK-007",
+      "title": "Timeline Winding SVG & Scroll Reveal Verification",
+      "status": "done",
+      "priority": "medium",
+      "acceptanceCriteria": [
+        "Timeline tab visible in navigation",
+        "SVG winding path renders smoothly with alternating cards",
+        "Collapses elegantly on mobile viewports"
+      ]
+    }
+  ]
+}

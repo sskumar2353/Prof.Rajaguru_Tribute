@@ -4,12 +4,14 @@
   overflow: hidden;
   display: grid;
   place-items: center;
-  background: #54b5c8;
+  background: #dfe4d9;
 }
 .backdrop {
   position: absolute;
   inset: 0;
-  background: #9ddff0;
+  background:
+    radial-gradient(circle at 18% 20%, rgba(255,255,255,.9), transparent 28%),
+    linear-gradient(135deg, #d7ded3 0%, #dfe4d9 45%, #c5cee7 100%);
   transform: scale(1.02);
 }
 .glow {
@@ -18,109 +20,17 @@
   height: 430px;
   right: 6%;
   top: 8%;
-  background: radial-gradient(
-    circle,
-    rgba(255, 255, 255, 0.72),
-    transparent 68%
-  );
+  background: radial-gradient(circle, rgba(255,255,255,.72), transparent 68%);
   filter: blur(18px);
 }
-.content {
-  position: relative;
-  z-index: 3;
-  text-align: center;
-  color: #fff;
-  padding: 42px 20px;
-}
-.eyebrow {
-  font:
-    italic 600 29px/1.2 Georgia,
-    serif;
-  margin: 0 0 20px;
-  text-shadow: 0 2px 15px rgba(0, 0, 0, 0.12);
-}
-.portraitFrame {
-  width: 250px;
-  height: 285px;
-  margin: auto;
-  border: 4px solid #fff;
-  background: #ddd;
-  box-shadow: 0 18px 45px rgba(0, 0, 0, 0.18);
-  overflow: hidden;
-}
-.portraitFrame img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-}
-.content h1 {
-  font:
-    700 37px/1.1 Georgia,
-    serif;
-  margin: 20px 0 8px;
-  text-shadow: 0 2px 10px rgba(0, 0, 0, 0.18);
-}
-.subtitle {
-  font:
-    italic 600 25px/1.25 Georgia,
-    serif;
-  margin: 0;
-  text-shadow: 0 2px 10px rgba(0, 0, 0, 0.18);
-}
-.dates {
-  display: inline-block;
-  margin-top: 12px;
-  font:
-    500 12px/1 Arial,
-    sans-serif;
-  letter-spacing: 0.18em;
-  text-transform: uppercase;
-  opacity: 0.92;
-}
-.petals span {
-  position: absolute;
-  z-index: 2;
-  width: 15px;
-  height: 8px;
-  border-radius: 100% 0 100% 0;
-  background: rgba(250, 208, 228, 0.78);
-  left: calc((var(--i) + 1) * 7.5%);
-  top: calc(6% + (var(--i) * 7%));
-  animation: float 9s ease-in-out infinite;
-  animation-delay: calc(var(--i) * -0.65s);
-  transform: rotate(calc(var(--i) * 32deg));
-}
-.petals span:nth-child(even) {
-  width: 11px;
-  height: 14px;
-  background: rgba(255, 255, 255, 0.4);
-}
-@keyframes float {
-  0%,
-  100% {
-    translate: 0 0;
-    opacity: 0.25;
-  }
-  50% {
-    translate: 38px 44px;
-    opacity: 0.8;
-  }
-}
-@media (max-width: 760px) {
-  .hero {
-    min-height: 500px;
-  }
-  .eyebrow {
-    font-size: 23px;
-  }
-  .portraitFrame {
-    width: 190px;
-    height: 220px;
-  }
-  .content h1 {
-    font-size: 30px;
-  }
-  .subtitle {
-    font-size: 20px;
-  }
-}
+.content { position: relative; z-index: 3; text-align: center; color: #303a5d; padding: 42px 20px; }
+.eyebrow { font: italic 600 29px/1.2 Georgia, serif; margin: 0 0 20px; }
+.portraitFrame { width: 250px; height: 285px; margin: auto; border: 5px solid #fffdf8; background: #ddd; box-shadow: 0 18px 45px rgba(48,58,93,.16); overflow: hidden; }
+.portraitFrame img { width: 100%; height: 100%; object-fit: cover; }
+.content h1 { font: 600 37px/1.1 Georgia, serif; margin: 20px 0 8px; }
+.subtitle { font: italic 500 25px/1.25 Georgia, serif; margin: 0; color: #5868a7; }
+.dates { display: inline-block; margin-top: 12px; font: 500 12px/1 'DM Sans', sans-serif; letter-spacing: .18em; text-transform: uppercase; color: #687064; }
+.petals span { position: absolute; z-index: 2; width: 15px; height: 8px; border-radius: 100% 0 100% 0; background: rgba(102,117,181,.28); left: calc((var(--i) + 1) * 7.5%); top: calc(6% + (var(--i) * 7%)); animation: float 9s ease-in-out infinite; animation-delay: calc(var(--i) * -.65s); transform: rotate(calc(var(--i) * 32deg)); }
+.petals span:nth-child(even) { width: 11px; height: 14px; background: rgba(176,140,67,.18); }
+@keyframes float { 0%,100%{translate:0 0;opacity:.25} 50%{translate:38px 44px;opacity:.8} }
+@media(max-width:760px){.hero{min-height:500px}.eyebrow{font-size:23px}.portraitFrame{width:190px;height:220px}.content h1{font-size:30px}.subtitle{font-size:20px}}

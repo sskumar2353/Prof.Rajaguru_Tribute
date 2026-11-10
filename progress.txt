@@ -1,0 +1,22 @@
+# Ralph Loop Progress Log
+# Project: Prof. Rajaguru Memorial Tribute
+
+[INITIALIZATION]
+- Project scanned and analyzed.
+- Verified React 18, Vite 6, Supabase client integration.
+- Confirmed working routes: Home, Tributes, Photos, Eulogy, Videos, Timeline.
+- Created CodeRabbit configuration (.coderabbit.yaml).
+- Scaffolded Get Shit Done (.planning/ and .agent/skills/gsd/).
+- Initialized Ralph Loop (prd.json, progress.txt, runner scripts, and .agent/skills/ralph-loop/).
+
+[EXECUTION & REFINEMENTS]
+- Cleaned and normalized color palette across all CSS files: purged all leftover pink, magenta, and cyan hues. Replaced with authentic warm ivory (#F7F4ED), soft white (#FFFDF8), muted periwinkle blue (#6675B5), deep muted blue (#303A5D), pale sage (#CBD4CA), and muted antique gold (#B08C43).
+- Implemented full interactive photo lightbox in PhotosPage and PhotoGrid with next/previous image controls, keyboard events (Escape to close, Left/Right arrow keys for navigation), counter display, and graceful image error handling to avoid broken icons.
+- Built Supabase Edge Function `supabase/functions/onedrive-photos/index.ts` for secure Microsoft Graph / OneDrive enumeration.
+- Added `src/services/photoService.js` connecting React to the Supabase Edge Function with seamless fallback to curated local high-res archives.
+- Enhanced Tributes form and service to support optional 'place' (city/country) with strict RLS validation, ensuring "Not specified" is never displayed.
+- Verified video embeds (QFhyRZfiRnI, CPZcEnu2Ab4) in 16:9 responsive containers with dedicated detail pages (/videos/:videoId).
+- Verified Timeline SVG winding path, alternating chapter cards, and responsive vertical collapse for mobile devices.
+- Created legacy and vanity route redirects for /gallery, /photos/images, and /memorial.
+- Comprehensive README documentation added for OneDrive, Microsoft Graph, YouTube, Supabase, and Vercel.
+- Successfully verified production build (`npm run build` completed with zero errors).

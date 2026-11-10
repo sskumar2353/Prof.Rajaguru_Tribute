@@ -1,0 +1,17 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1600 720" preserveAspectRatio="xMidYMid slice">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#0e6878"/><stop offset=".52" stop-color="#53b7c9"/><stop offset="1" stop-color="#b9edf3"/></linearGradient>
+    <radialGradient id="glow"><stop stop-color="#fff" stop-opacity=".82"/><stop offset="1" stop-color="#fff" stop-opacity="0"/></radialGradient>
+    <filter id="blur"><feGaussianBlur stdDeviation="24"/></filter>
+  </defs>
+  <rect width="1600" height="720" fill="url(#bg)"/>
+  <circle cx="1330" cy="280" r="180" fill="url(#glow)" filter="url(#blur)"/>
+  <g fill="none" stroke="#dffbff" stroke-width="7" stroke-linecap="round" opacity=".78">
+    <path d="M-30 590 C170 350 260 420 400 220 C490 90 610 180 720 30"/>
+    <path d="M1200 760 C1160 590 1240 490 1390 440 C1490 405 1540 320 1640 260"/>
+  </g>
+  <g fill="#f6d3e5" opacity=".9">
+    <ellipse cx="170" cy="360" rx="34" ry="18" transform="rotate(-35 170 360)"/><ellipse cx="225" cy="310" rx="32" ry="17" transform="rotate(28 225 310)"/><ellipse cx="290" cy="350" rx="35" ry="18" transform="rotate(-12 290 350)"/><ellipse cx="350" cy="290" rx="32" ry="18" transform="rotate(38 350 290)"/>
+  </g>
+  <g fill="#fff" opacity=".38"><circle cx="100" cy="140" r="35"/><circle cx="360" cy="120" r="22"/><circle cx="980" cy="100" r="18"/><circle cx="1450" cy="500" r="35"/></g>
+</svg>
