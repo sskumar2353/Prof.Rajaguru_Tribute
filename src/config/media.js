@@ -1,6 +1,9 @@
 export const mediaConfig = {
+  googlePhotosAlbumUrl:
+    'https://photos.app.goo.gl/yumGfaYodZ19hmHV6',
   oneDriveFolderUrl:
     'https://1drv.ms/f/c/0C611E8D3ECCD702/Ei4SU4pGo7JLu-Vi6GSR3VEB0R5vkIwBKLEg6j9-Z1iEmw',
+
   videos: [
     {
       id: 'QFhyRZfiRnI',

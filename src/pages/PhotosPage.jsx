@@ -92,11 +92,11 @@ export default function PhotosPage() {
             </div>
             <a
               className={styles.archiveButton}
-              href={mediaConfig.oneDriveFolderUrl}
+              href={mediaConfig.googlePhotosAlbumUrl || mediaConfig.oneDriveFolderUrl}
               target="_blank"
               rel="noreferrer"
             >
-              Open OneDrive archive <ExternalLink size={15} />
+              Open Google Photos album <ExternalLink size={15} />
             </a>
           </div>
 
@@ -128,12 +128,12 @@ export default function PhotosPage() {
                 The shared OneDrive photo archive is currently being updated.
               </p>
               <a
-                href={mediaConfig.oneDriveFolderUrl}
+                href={mediaConfig.googlePhotosAlbumUrl || mediaConfig.oneDriveFolderUrl}
                 target="_blank"
                 rel="noreferrer"
                 className={styles.archiveButton}
               >
-                Open OneDrive photo folder <ExternalLink size={15} />
+                Open Google Photos album <ExternalLink size={15} />
               </a>
             </div>
           )}
@@ -156,7 +156,7 @@ export default function PhotosPage() {
                     aria-label={`View photograph: ${photo.caption || photo.title}`}
                   >
                     <img
-                      src={photo.src}
+                      src={photo.thumbnail || photo.src}
                       alt={photo.alt || photo.caption || 'Memorial photograph'}
                       loading={index < 4 ? 'eager' : 'lazy'}
                       onError={() => handleImageError(photo.id)}
@@ -176,10 +176,10 @@ export default function PhotosPage() {
           )}
 
           <div className={styles.note}>
-            <strong>OneDrive photo archive</strong>
+            <strong>Google Photos Memorial Album</strong>
             <span>
-              All original high-resolution photographs are preserved in the family’s OneDrive archive.
-              To upload or share additional memorial photographs with the family, use the OneDrive archive link above.
+              All original high-resolution photographs are preserved in the family’s Google Photos memorial album.
+              To view the full album or upload additional memorial photographs, use the album link above.
             </span>
           </div>
         </div>

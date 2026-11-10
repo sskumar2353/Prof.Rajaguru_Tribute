@@ -43,7 +43,7 @@ export default function PhotoGrid({ photos }) {
             onClick={() => openLightbox(index)}
             aria-label={`View photo: ${photo.caption || photo.alt}`}
           >
-            <img src={photo.src} alt={photo.alt || photo.caption || 'Memorial photo'} loading="lazy" />
+            <img src={photo.thumbnail || photo.src} alt={photo.alt || photo.caption || 'Memorial photo'} loading="lazy" />
             <span className={styles.caption}>
               <em>{photo.caption}</em>
               <Maximize2 size={15} />

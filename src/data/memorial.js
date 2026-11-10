@@ -1,3 +1,5 @@
+import { googlePhotos } from './googlePhotos';
+
 export const memorial = {
   portrait: '/assets/Prof. Rajaguru.jpg',
   name: 'Prof. Rajaguru',
@@ -53,41 +55,13 @@ export const memorial = {
     },
   ],
 
-  photos: [
+  photos: Array.isArray(googlePhotos) && googlePhotos.length > 0 ? googlePhotos : [
     {
       id: 'photo-1',
-      src: '/assets/memory_1.jpg',
-      alt: 'Prof. Rajaguru smiling warmly',
+      src: '/assets/memorial-portrait.svg',
+      alt: 'Prof. Rajaguru',
       caption: 'A cherished smile',
       title: 'Prof. Rajaguru',
-    },
-    {
-      id: 'photo-2',
-      src: '/assets/memory_2.jpg',
-      alt: 'Moments of quiet joy',
-      caption: 'Among the moments we cherish',
-      title: 'Treasured Moments',
-    },
-    {
-      id: 'photo-3',
-      src: '/assets/memory_3.webp',
-      alt: 'Family celebration memory',
-      caption: 'Together with family',
-      title: 'Family Gatherings',
-    },
-    {
-      id: 'photo-4',
-      src: '/assets/memory_4.webp',
-      alt: 'Memories of fellowship',
-      caption: 'A beautiful day of fellowship',
-      title: 'Fellowship & Joy',
-    },
-    {
-      id: 'photo-5',
-      src: '/assets/memory_5.webp',
-      alt: 'Peaceful garden moments',
-      caption: 'Peaceful moments and reflection',
-      title: 'Peaceful Reflections',
     },
   ],
 };
