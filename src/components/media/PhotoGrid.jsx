@@ -41,12 +41,11 @@ export default function PhotoGrid({ photos }) {
             type="button"
             className={`${styles.item} ${index === 0 ? styles.featured : ''}`}
             onClick={() => openLightbox(index)}
-            aria-label={`View photo: ${photo.caption || photo.alt}`}
+            aria-label={`View photo ${index + 1}`}
           >
-            <img src={photo.thumbnail || photo.src} alt={photo.alt || photo.caption || 'Memorial photo'} loading="lazy" />
-            <span className={styles.caption}>
-              <em>{photo.caption}</em>
-              <Maximize2 size={15} />
+            <img src={photo.thumbnail || photo.src} alt="Memorial photograph" loading="lazy" />
+            <span className={styles.hoverIndicator} aria-hidden="true">
+              <Maximize2 size={16} />
             </span>
           </button>
         ))}
@@ -73,8 +72,7 @@ export default function PhotoGrid({ photos }) {
                 </button>
               </>
             )}
-            <img src={active.src} alt={active.alt || active.caption} className={styles.modalImg} />
-            <p className={styles.modalCaption}>{active.caption}</p>
+            <img src={active.src} alt="Memorial photograph" className={styles.modalImg} />
           </div>
         </div>
       )}

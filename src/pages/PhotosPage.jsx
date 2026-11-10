@@ -154,21 +154,16 @@ export default function PhotosPage() {
                       className={`${styles.card} ${isFeatured ? styles.featured : ''} ${
                         isWide ? styles.wide : ''
                       }`}
-                      aria-label={`View photograph: ${photo.caption || photo.title}`}
+                      aria-label={`View photograph ${index + 1}`}
                     >
                       <img
                         src={photo.thumbnail || photo.src}
-                        alt={photo.alt || photo.caption || 'Memorial photograph'}
+                        alt="Memorial photograph of Prof. Rajaguru"
                         loading={index < 4 ? 'eager' : 'lazy'}
                         onError={() => handleImageError(photo.id)}
                       />
-                      <div className={styles.overlay}>
-                        <span className={styles.caption}>
-                          {photo.caption || photo.title || 'A cherished memory'}
-                        </span>
-                        <span className={styles.zoomIcon} aria-hidden="true">
-                          <Maximize2 size={16} />
-                        </span>
+                      <div className={styles.hoverIndicator} aria-hidden="true">
+                        <Maximize2 size={18} />
                       </div>
                     </button>
                   );
@@ -243,9 +238,6 @@ export default function PhotosPage() {
             </div>
 
             <div className={styles.lightboxMeta}>
-              <p className={styles.lightboxCaption}>
-                {activePhoto.caption || activePhoto.title}
-              </p>
               <span className={styles.lightboxCounter}>
                 {selectedIndex + 1} / {displayedPhotos.length}
               </span>
