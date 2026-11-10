@@ -1,36 +1,24 @@
-import { useEffect, useRef } from 'react';
+import { useRef } from 'react';
+import { motion, useScroll, useSpring } from 'framer-motion';
 import PageIntro from '../components/common/PageIntro';
 import { memorial } from '../data/memorial';
 import styles from './TimelinePage.module.css';
 
 export default function TimelinePage() {
-  const timelineRef = useRef(null);
+  const containerRef = useRef(null);
 
-  useEffect(() => {
-    const root = timelineRef.current;
+  const { scrollYProgress } = useScroll({
+    target: containerRef,
+    offset: ['start 70%', 'end 90%'],
+  });
 
-    if (!root) return;
+  const smoothProgress = useSpring(scrollYProgress, {
+    stiffness: 120,
+    damping: 25,
+    restDelta: 0.001,
+  });
 
-    const items = root.querySelectorAll(`.${styles.item}`);
-
-    const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            entry.target.classList.add(styles.visible);
-          }
-        });
-      },
-      {
-        threshold: 0.18,
-        rootMargin: '0px 0px -60px 0px',
-      }
-    );
-
-    items.forEach((item) => observer.observe(item));
-
-    return () => observer.disconnect();
-  }, []);
+  const timelineItems = Array.isArray(memorial.timeline) ? memorial.timeline : [];
 
   return (
     <>
@@ -39,8 +27,14 @@ export default function TimelinePage() {
         text="A collection of meaningful chapters, memories, and moments from a life that continues to inspire."
       />
 
-      <section className={styles.section}>
-        <div className={styles.intro}>
+      <section className={styles.section} ref={containerRef}>
+        <motion.div
+          className={styles.intro}
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.6 }}
+        >
           <span className={styles.eyebrow}>The Journey</span>
 
           <h1>
@@ -53,10 +47,10 @@ export default function TimelinePage() {
             Follow the journey through the years, remembering the moments
             that shaped a life and touched the lives of others.
           </p>
-        </div>
+        </motion.div>
 
-        {memorial.timeline.length > 0 ? (
-          <div className={styles.timeline} ref={timelineRef}>
+        {timelineItems.length > 0 ? (
+          <div className={styles.timeline}>
             <svg
               className={styles.pathSvg}
               viewBox="0 0 1000 2200"
@@ -93,7 +87,7 @@ export default function TimelinePage() {
                 "
               />
 
-              <path
+              <motion.path
                 className={styles.path}
                 d="
                   M 500 20
@@ -105,19 +99,29 @@ export default function TimelinePage() {
                   C 700 1730, 700 1830, 500 1940
                   C 400 1995, 430 2070, 500 2180
                 "
+                style={{ pathLength: smoothProgress }}
               />
             </svg>
 
             <div className={styles.milestones}>
-              {memorial.timeline.map((item, index) => {
+              {timelineItems.map((item, index) => {
                 const isLeft = index % 2 === 0;
 
                 return (
-                  <article
+                  <motion.article
                     className={`${styles.item} ${
                       isLeft ? styles.left : styles.right
                     }`}
                     key={`${item.year}-${index}`}
+                    initial={{ opacity: 0, y: 35, scale: 0.98 }}
+                    whileInView={{ opacity: 1, y: 0, scale: 1 }}
+                    viewport={{ once: true, margin: '-50px' }}
+                    transition={{
+                      duration: 0.6,
+                      ease: [0.22, 1, 0.36, 1],
+                      delay: 0.05,
+                    }}
+                    whileTap={{ scale: 0.98 }}
                   >
                     <div className={styles.content}>
                       <div className={styles.chapter}>
@@ -133,21 +137,42 @@ export default function TimelinePage() {
                       <p>{item.text}</p>
                     </div>
 
-                    <div className={styles.marker}>
-                      <span className={styles.markerCore} />
-                    </div>
-                  </article>
+                    <motion.div
+                      className={styles.marker}
+                      initial={{ scale: 0.6, opacity: 0 }}
+                      whileInView={{ scale: 1, opacity: 1 }}
+                      viewport={{ once: true }}
+                      transition={{ type: 'spring', stiffness: 300, damping: 20 }}
+                    >
+                      <motion.span
+                        className={styles.markerCore}
+                        animate={{ scale: [1, 1.4, 1] }}
+                        transition={{
+                          duration: 2.8,
+                          repeat: Infinity,
+                          ease: 'easeInOut',
+                          delay: index * 0.3,
+                        }}
+                      />
+                    </motion.div>
+                  </motion.article>
                 );
               })}
             </div>
 
-            <div className={styles.end}>
+            <motion.div
+              className={styles.end}
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.7 }}
+            >
               <div className={styles.endMarker}>
                 <span />
               </div>
 
               <p>Forever remembered</p>
-            </div>
+            </motion.div>
           </div>
         ) : (
           <div className={styles.empty}>
@@ -156,8 +181,7 @@ export default function TimelinePage() {
             <h2>Life chapters will appear here</h2>
 
             <p>
-              Add timeline entries in{' '}
-              <code>src/data/memorial.js</code>.
+              Add timeline entries in <code>src/data/memorial.js</code>.
             </p>
           </div>
         )}
