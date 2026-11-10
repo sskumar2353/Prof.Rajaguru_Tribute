@@ -22,7 +22,7 @@ export async function getMemorialPhotos() {
     // Falls back seamlessly to pre-cached verified Google Photos
   }
 
-  // 2. Return pre-cached verified Google Photos (301 photos)
+  // 2. Return pre-cached verified Google Photos (259 pure photos)
   if (Array.isArray(googlePhotos) && googlePhotos.length > 0) {
     return googlePhotos;
   }
@@ -33,8 +33,6 @@ export async function getMemorialPhotos() {
     id: photo.id || `photo-${index}`,
     src: photo.src || photo.url,
     thumbnail: photo.thumbnail || photo.src || photo.url,
-    alt: photo.alt || photo.caption || 'Memorial photograph',
-    title: photo.title || photo.caption || 'A cherished memory',
-    caption: photo.caption || photo.title || 'A cherished memory',
+    alt: 'Memorial photograph of Prof. Rajaguru',
   }));
 }

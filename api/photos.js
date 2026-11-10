@@ -54,8 +54,6 @@ function fetchAlbum(shareUrl) {
                         width: mediaData[1],
                         height: mediaData[2],
                         alt: 'Memorial photograph of Prof. Rajaguru',
-                        title: `Cherished Memory ${photos.length + 1}`,
-                        caption: `Cherished memory ${photos.length + 1}`,
                       });
                     }
                   });
@@ -79,8 +77,6 @@ function fetchAlbum(shareUrl) {
                       src: `${base}=w1600`,
                       thumbnail: `${base}=w800`,
                       alt: 'Memorial photograph of Prof. Rajaguru',
-                      title: `Cherished Memory ${photos.length + 1}`,
-                      caption: `Cherished memory ${photos.length + 1}`,
                     });
                   }
                 }
