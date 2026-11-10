@@ -1,10 +1,10 @@
 .page {
   min-height: 100vh;
-  background: #f7f4ed;
+  background: #f8fbfb;
 }
 
 .section {
-  padding: 70px 24px 110px;
+  padding: 70px 24px 100px;
 }
 
 .container {
@@ -17,38 +17,36 @@
   align-items: flex-end;
   justify-content: space-between;
   gap: 24px;
-  margin: 80px 0 36px;
+  margin: 90px 0 36px;
 }
 
 .label {
   display: block;
   margin-bottom: 10px;
-  color: #6675b5;
+  color: #78adb8;
   font-size: 0.75rem;
-  font-weight: 600;
+  font-weight: 700;
   letter-spacing: 0.18em;
   text-transform: uppercase;
 }
 
 .wallHeader h2 {
   margin: 0;
-  color: #303a5d;
+  color: #294047;
   font-family: Georgia, 'Times New Roman', serif;
-  font-size: clamp(2rem, 3.8vw, 2.8rem);
+  font-size: clamp(2rem, 4vw, 3rem);
   font-weight: 400;
 }
 
 .icon {
-  width: 48px;
-  height: 48px;
+  width: 50px;
+  height: 50px;
   flex-shrink: 0;
   display: grid;
   place-items: center;
   border-radius: 50%;
-  color: #b08c43;
-  background: #fffdf8;
-  border: 1px solid rgba(48, 58, 93, 0.12);
-  box-shadow: 0 4px 12px rgba(48, 58, 93, 0.05);
+  color: #78adb8;
+  background: #e9f5f7;
 }
 
 .grid {
@@ -62,10 +60,10 @@
 .error {
   padding: 60px 30px;
   text-align: center;
-  border: 1px solid rgba(48, 58, 93, 0.1);
-  border-radius: 6px;
-  background: #fffdf8;
-  color: #74736e;
+  border: 1px solid #e2eeee;
+  border-radius: 18px;
+  background: white;
+  color: #70868b;
 }
 
 .empty {
@@ -75,13 +73,13 @@
 }
 
 .empty svg {
-  margin-bottom: 16px;
-  color: #6675b5;
+  margin-bottom: 18px;
+  color: #85b8c2;
 }
 
 .empty h3 {
   margin: 0 0 8px;
-  color: #303a5d;
+  color: #354d53;
   font-family: Georgia, 'Times New Roman', serif;
   font-size: 1.5rem;
   font-weight: 400;
@@ -92,35 +90,34 @@
 }
 
 .error {
-  color: #943232;
-  background: #fff2f2;
+  color: #a65f5f;
+  background: #fff8f8;
   border-color: #f0dada;
 }
 
 .archiveAction {
   display: flex;
   justify-content: center;
-  margin-top: 48px;
+  margin-top: 42px;
 }
 
 .archiveButton {
   display: inline-flex;
   align-items: center;
   gap: 8px;
-  padding: 13px 28px;
-  border: 1px solid #303a5d;
-  border-radius: 4px;
-  color: #303a5d;
-  background: #fffdf8;
+  padding: 13px 22px;
+  border: 1px solid #c84fa6;
+  border-radius: 999px;
+  color: #a94386;
+  background: #fff;
   text-decoration: none;
-  font: 600 13px 'DM Sans', Arial, sans-serif;
-  letter-spacing: 0.03em;
-  transition: all 0.2s ease;
+  font: 700 13px Arial, sans-serif;
+  transition: 0.2s ease;
 }
 
 .archiveButton:hover {
-  color: #fffdf8;
-  background: #303a5d;
+  color: #fff;
+  background: #c84fa6;
 }
 
 @media (max-width: 760px) {
@@ -129,7 +126,7 @@
   }
 
   .wallHeader {
-    margin-top: 60px;
+    margin-top: 65px;
     align-items: flex-start;
   }
 

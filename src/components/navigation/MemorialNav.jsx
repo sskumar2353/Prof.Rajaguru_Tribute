@@ -5,8 +5,7 @@ const links = [
   { label: 'Home', path: '/' },
   { label: 'Tributes', path: '/tributes' },
   { label: 'Eulogy', path: '/eulogy' },
-  { label: 'Images', path: '/photos' },
-  { label: 'Videos', path: '/videos' },
+  { label: 'Gallery', path: '/photos' },
   { label: 'Timeline', path: '/timeline' },
 ];
 

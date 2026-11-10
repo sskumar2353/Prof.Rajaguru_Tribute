@@ -1,12 +1,13 @@
 .nav {
-  background: rgba(48, 58, 93, 0.97);
+  background: #c84fa6;
   position: sticky;
   top: 0;
   z-index: 15;
-  box-shadow: 0 7px 24px rgba(48, 58, 93, 0.12);
+  box-shadow: 0 6px 20px rgba(61, 25, 52, 0.12);
 }
+
 .inner {
-  max-width: 1120px;
+  max-width: 1100px;
   min-height: 58px;
   margin: 0 auto;
   display: flex;
@@ -15,34 +16,51 @@
   overflow-x: auto;
   scrollbar-width: none;
 }
-.inner::-webkit-scrollbar { display: none; }
-.link, .active {
+
+.inner::-webkit-scrollbar {
+  display: none;
+}
+
+.link,
+.active {
   position: relative;
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  color: #f9f7f0;
+  color: #fff;
   text-decoration: none;
-  font: 600 14px/1 'DM Sans', Arial, sans-serif;
-  letter-spacing: 0.04em;
-  padding: 0 25px;
+  font: italic 700 21px/1 Georgia, serif;
+  padding: 0 30px;
   white-space: nowrap;
-  transition: color .25s ease;
 }
-.link::after, .active::after {
+
+.link::after,
+.active::after {
   content: '';
   position: absolute;
   left: 50%;
   bottom: 0;
-  height: 3px;
+  height: 4px;
   width: 0;
-  background: #cbb77a;
+  background: #fff;
   transform: translateX(-50%);
-  transition: width .25s ease;
+  transition: width 0.25s ease;
 }
-.link:hover, .active { color: #fff; }
-.link:hover::after, .active::after { width: 54px; }
+
+.link:hover::after,
+.active::after {
+  width: 70px;
+}
+
 @media (max-width: 760px) {
-  .inner { justify-content: flex-start; }
-  .link, .active { min-height: 54px; padding: 0 17px; font-size: 13px; }
+  .inner {
+    justify-content: flex-start;
+  }
+
+  .link,
+  .active {
+    min-height: 54px;
+    padding: 0 20px;
+    font-size: 17px;
+  }
 }

@@ -1,15 +1,9 @@
--- Supabase Schema for Prof. Rajaguru Memorial Tributes
-
 create table if not exists public.tributes (
   id uuid primary key default gen_random_uuid(),
   name varchar(100) not null,
-  place varchar(100),
   message text not null check (char_length(message) between 3 and 1000),
   created_at timestamptz not null default now()
 );
-
--- Ensure place column exists if table was already created
-alter table public.tributes add column if not exists place varchar(100);
 
 alter table public.tributes enable row level security;
 

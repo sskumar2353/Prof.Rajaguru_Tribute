@@ -1,19 +1,22 @@
 .page {
   min-height: 100vh;
-  background: #f7f4ed;
+  background: #fafcfc;
 }
 
 .hero {
   position: relative;
-  min-height: 380px;
+  min-height: 430px;
   display: flex;
   align-items: center;
   justify-content: center;
   overflow: hidden;
+
   background:
-    radial-gradient(circle at 50% 20%, rgba(255, 253, 248, 0.85), transparent 65%),
-    linear-gradient(135deg, #cbd4ca 0%, #d8ded5 40%, #bfc9e5 100%);
-  border-bottom: 1px solid rgba(48, 58, 93, 0.08);
+    linear-gradient(
+      135deg,
+      rgba(103, 177, 195, 0.95),
+      rgba(188, 226, 232, 0.95)
+    );
 }
 
 .overlay {
@@ -22,8 +25,8 @@
   background:
     radial-gradient(
       circle at 50% 30%,
-      rgba(255, 255, 255, 0.5),
-      transparent 70%
+      rgba(255, 255, 255, 0.3),
+      transparent 55%
     );
 }
 
@@ -31,77 +34,71 @@
   position: relative;
   z-index: 2;
   max-width: 800px;
-  padding: 60px 24px;
+  padding: 80px 24px;
   text-align: center;
-  color: #303a5d;
+  color: white;
 }
 
 .label,
 .sectionLabel {
   display: block;
   margin-bottom: 16px;
-  font-family: 'DM Sans', Arial, sans-serif;
-  font-size: 0.75rem;
+  font-size: 0.78rem;
   font-weight: 600;
   letter-spacing: 0.22em;
   text-transform: uppercase;
-  color: #6675b5;
 }
 
 .heroContent h1 {
   margin: 0;
   font-family: Georgia, 'Times New Roman', serif;
-  font-size: clamp(2.4rem, 5.5vw, 4.2rem);
-  font-weight: 500;
-  line-height: 1.15;
-  color: #303a5d;
+  font-size: clamp(2.5rem, 6vw, 5rem);
+  font-weight: 400;
+  line-height: 1.08;
 }
 
 .heroContent p {
   max-width: 650px;
-  margin: 20px auto 0;
-  font-family: 'DM Sans', Arial, sans-serif;
+  margin: 24px auto 0;
   font-size: 1.05rem;
   line-height: 1.8;
-  color: #74736e;
 }
 
 .content {
-  padding: 80px 24px 110px;
-  background: #f7f4ed;
+  padding: 90px 24px;
 }
 
 .inner {
-  width: min(820px, 100%);
+  width: min(850px, 100%);
   margin: 0 auto;
   text-align: center;
-  background: #fffdf8;
-  padding: 60px 50px;
-  border: 1px solid rgba(48, 58, 93, 0.08);
-  box-shadow: 0 16px 40px rgba(48, 58, 93, 0.05);
+}
+
+.sectionLabel {
+  color: #6caeba;
 }
 
 .inner h2 {
   margin: 0;
-  color: #303a5d;
+  color: #263d43;
   font-family: Georgia, 'Times New Roman', serif;
-  font-size: clamp(1.9rem, 3.8vw, 3rem);
-  font-weight: 500;
+  font-size: clamp(2rem, 4vw, 3.3rem);
+  font-weight: 400;
 }
 
 .divider {
-  width: 50px;
-  height: 2px;
-  margin: 24px auto 44px;
-  background: #b08c43;
+  width: 60px;
+  height: 1px;
+  margin: 28px auto 50px;
+  background: #8bbdc7;
 }
 
 .eulogy {
   text-align: left;
-  color: #28272b;
+  color: #52676d;
   font-family: Georgia, 'Times New Roman', serif;
   font-size: 1.12rem;
-  line-height: 2.05;
+  line-height: 2;
 }
 
 .eulogy p {
@@ -109,34 +106,29 @@
 }
 
 .eulogy strong {
-  color: #303a5d;
-  font-weight: 600;
+  color: #304c54;
 }
 
 .closing {
-  margin-top: 48px !important;
+  margin-top: 50px !important;
   text-align: center;
-  color: #6675b5;
+  color: #4d8996;
   font-size: 1.25rem;
   font-style: italic;
   line-height: 2;
 }
 
-@media (max-width: 760px) {
+@media (max-width: 600px) {
   .hero {
-    min-height: 320px;
-  }
-
-  .inner {
-    padding: 38px 22px;
+    min-height: 360px;
   }
 
   .content {
-    padding: 40px 16px 70px;
+    padding: 60px 20px;
   }
 
   .eulogy {
-    font-size: 1.02rem;
+    font-size: 1rem;
     line-height: 1.85;
   }
 }

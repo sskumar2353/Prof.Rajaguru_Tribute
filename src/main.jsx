@@ -1,19 +1,19 @@
-import React from 'react';
-import ReactDOM from 'react-dom/client';
-import { BrowserRouter, Route, Routes, Navigate } from 'react-router-dom';
-import MemorialLayout from './layouts/MemorialLayout';
-import HomePage from './pages/HomePage';
-import TributesPage from './pages/TributesPage';
-import AllTributesPage from './pages/AllTributesPage';
-import PhotosPage from './pages/PhotosPage';
-import NotFoundPage from './pages/NotFoundPage';
-import EulogyPage from './pages/EulogyPage';
-import VideosPage from './pages/VideosPage';
-import VideoDetailPage from './pages/VideoDetailPage';
-import TimelinePage from './pages/TimelinePage';
-import './styles/global.css';
+import React from "react";
+import ReactDOM from "react-dom/client";
+import { BrowserRouter, Route, Routes } from "react-router-dom";
+import MemorialLayout from "./layouts/MemorialLayout";
+import HomePage from "./pages/HomePage";
+import TributesPage from "./pages/TributesPage";
+import AllTributesPage from "./pages/AllTributesPage";
+import PhotosPage from "./pages/PhotosPage";
+import NotFoundPage from "./pages/NotFoundPage";
+import EulogyPage from "./pages/EulogyPage";
+import TimelinePage from "./pages/TimelinePage";
+import ImagesPage from "./pages/ImagesPage";
+import VideoDetailPage from "./pages/VideoDetailPage";
+import "./styles/global.css";
 
-ReactDOM.createRoot(document.getElementById('root')).render(
+ReactDOM.createRoot(document.getElementById("root")).render(
   <React.StrictMode>
     <BrowserRouter>
       <Routes>
@@ -23,16 +23,10 @@ ReactDOM.createRoot(document.getElementById('root')).render(
           <Route path="/tributes/all" element={<AllTributesPage />} />
           <Route path="/photos" element={<PhotosPage />} />
           <Route path="/eulogy" element={<EulogyPage />} />
-          <Route path="/videos" element={<VideosPage />} />
-          <Route path="/videos/:videoId" element={<VideoDetailPage />} />
           <Route path="/timeline" element={<TimelinePage />} />
-
-          {/* Legacy & Convenience Redirects */}
-          <Route path="/gallery" element={<Navigate to="/photos" replace />} />
-          <Route path="/photos/images" element={<Navigate to="/photos" replace />} />
-          <Route path="/photos/image/:id" element={<Navigate to="/photos" replace />} />
-          <Route path="/memorial" element={<Navigate to="/" replace />} />
-
+          <Route path="/photos" element={<PhotosPage />} />
+          <Route path="/photos/images" element={<ImagesPage />} />
+          <Route path="/photos/videos/:videoId" element={<VideoDetailPage />} />
           <Route path="*" element={<NotFoundPage />} />
         </Route>
       </Routes>

@@ -1,10 +1,10 @@
 .page {
   min-height: 100vh;
-  background: #f7f4ed;
+  background: #f8fbfb;
 }
 
 .section {
-  padding: 60px 24px 110px;
+  padding: 58px 24px 100px;
 }
 
 .container {
@@ -17,27 +17,21 @@
   align-items: center;
   justify-content: space-between;
   gap: 20px;
-  margin-bottom: 32px;
+  margin-bottom: 30px;
 }
 
 .backButton {
   display: inline-flex;
   align-items: center;
   gap: 8px;
-  color: #303a5d;
+  color: #a94386;
   text-decoration: none;
-  font: 600 13px 'DM Sans', Arial, sans-serif;
-  letter-spacing: 0.03em;
-  transition: color 0.2s ease;
-}
-
-.backButton:hover {
-  color: #6675b5;
+  font: 700 13px Arial, sans-serif;
 }
 
 .count {
-  color: #74736e;
-  font: 500 13px 'DM Sans', Arial, sans-serif;
+  color: #77878b;
+  font: 600 13px Arial, sans-serif;
 }
 
 .grid {
@@ -51,10 +45,10 @@
 .error {
   padding: 60px 30px;
   text-align: center;
-  border: 1px solid rgba(48, 58, 93, 0.1);
-  border-radius: 6px;
-  background: #fffdf8;
-  color: #74736e;
+  border: 1px solid #e2eeee;
+  border-radius: 18px;
+  background: #fff;
+  color: #70868b;
 }
 
 .empty {
@@ -64,13 +58,13 @@
 }
 
 .empty svg {
-  margin-bottom: 16px;
-  color: #6675b5;
+  margin-bottom: 18px;
+  color: #85b8c2;
 }
 
 .empty h3 {
   margin: 0 0 8px;
-  color: #303a5d;
+  color: #354d53;
   font-family: Georgia, 'Times New Roman', serif;
   font-size: 1.5rem;
   font-weight: 400;
@@ -81,8 +75,8 @@
 }
 
 .error {
-  color: #943232;
-  background: #fff2f2;
+  color: #a65f5f;
+  background: #fff8f8;
   border-color: #f0dada;
 }
 
