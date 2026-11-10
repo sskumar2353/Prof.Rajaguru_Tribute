@@ -1,5 +1,5 @@
 import { useState, useEffect, useCallback } from 'react';
-import { ExternalLink, Images, Maximize2, X, ChevronLeft, ChevronRight, RefreshCw } from 'lucide-react';
+import { ExternalLink, Images, Maximize2, X, ChevronLeft, ChevronRight, RefreshCw, ArrowRight } from 'lucide-react';
 import PageIntro from '../components/common/PageIntro';
 import { mediaConfig } from '../config/media';
 import { getMemorialPhotos } from '../services/photoService';
@@ -35,25 +35,27 @@ export default function PhotosPage() {
     setBrokenImageIds((prev) => new Set(prev).add(id));
   }
 
+  // Filter out any broken images, limit strictly to first 30 pure photographs
   const validPhotos = photos.filter((p) => !brokenImageIds.has(p.id));
+  const displayedPhotos = validPhotos.slice(0, 30);
 
-  // Lightbox keyboard navigation
+  // Lightbox navigation
   const openLightbox = (index) => setSelectedIndex(index);
   const closeLightbox = () => setSelectedIndex(null);
 
   const prevImage = useCallback(() => {
-    if (validPhotos.length === 0) return;
+    if (displayedPhotos.length === 0) return;
     setSelectedIndex((current) =>
-      current === 0 ? validPhotos.length - 1 : current - 1
+      current === 0 ? displayedPhotos.length - 1 : current - 1
     );
-  }, [validPhotos.length]);
+  }, [displayedPhotos.length]);
 
   const nextImage = useCallback(() => {
-    if (validPhotos.length === 0) return;
+    if (displayedPhotos.length === 0) return;
     setSelectedIndex((current) =>
-      current === validPhotos.length - 1 ? 0 : current + 1
+      current === displayedPhotos.length - 1 ? 0 : current + 1
     );
-  }, [validPhotos.length]);
+  }, [displayedPhotos.length]);
 
   useEffect(() => {
     if (selectedIndex === null) return;
@@ -73,7 +75,7 @@ export default function PhotosPage() {
     };
   }, [selectedIndex, prevImage, nextImage]);
 
-  const activePhoto = selectedIndex !== null ? validPhotos[selectedIndex] : null;
+  const activePhoto = selectedIndex !== null ? displayedPhotos[selectedIndex] : null;
 
   return (
     <>
@@ -96,7 +98,7 @@ export default function PhotosPage() {
               target="_blank"
               rel="noreferrer"
             >
-              Open Google Photos album <ExternalLink size={15} />
+              Open Gallery <ExternalLink size={15} />
             </a>
           </div>
 
@@ -120,68 +122,75 @@ export default function PhotosPage() {
             </div>
           )}
 
-          {!loading && !error && validPhotos.length === 0 && (
+          {!loading && !error && displayedPhotos.length === 0 && (
             <div className={styles.empty}>
               <Images size={34} />
               <h3>Photographs are being prepared</h3>
-              <p>
-                The shared OneDrive photo archive is currently being updated.
-              </p>
+              <p>The memorial photo archive is currently being updated.</p>
               <a
                 href={mediaConfig.googlePhotosAlbumUrl || mediaConfig.oneDriveFolderUrl}
                 target="_blank"
                 rel="noreferrer"
                 className={styles.archiveButton}
               >
-                Open Google Photos album <ExternalLink size={15} />
+                Open Gallery <ExternalLink size={15} />
               </a>
             </div>
           )}
 
-          {!loading && !error && validPhotos.length > 0 && (
-            <div className={styles.grid}>
-              {validPhotos.map((photo, index) => {
-                // Editorial composition: first image is featured, fifth image is wide
-                const isFeatured = index === 0;
-                const isWide = index === 4;
+          {!loading && !error && displayedPhotos.length > 0 && (
+            <>
+              <div className={styles.grid}>
+                {displayedPhotos.map((photo, index) => {
+                  // Editorial composition: first image is featured, fifth image is wide
+                  const isFeatured = index === 0;
+                  const isWide = index === 4;
 
-                return (
-                  <button
-                    key={photo.id || index}
-                    type="button"
-                    onClick={() => openLightbox(index)}
-                    className={`${styles.card} ${isFeatured ? styles.featured : ''} ${
-                      isWide ? styles.wide : ''
-                    }`}
-                    aria-label={`View photograph: ${photo.caption || photo.title}`}
-                  >
-                    <img
-                      src={photo.thumbnail || photo.src}
-                      alt={photo.alt || photo.caption || 'Memorial photograph'}
-                      loading={index < 4 ? 'eager' : 'lazy'}
-                      onError={() => handleImageError(photo.id)}
-                    />
-                    <div className={styles.overlay}>
-                      <span className={styles.caption}>
-                        {photo.caption || photo.title || 'A cherished memory'}
-                      </span>
-                      <span className={styles.zoomIcon} aria-hidden="true">
-                        <Maximize2 size={16} />
-                      </span>
-                    </div>
-                  </button>
-                );
-              })}
-            </div>
+                  return (
+                    <button
+                      key={photo.id || index}
+                      type="button"
+                      onClick={() => openLightbox(index)}
+                      className={`${styles.card} ${isFeatured ? styles.featured : ''} ${
+                        isWide ? styles.wide : ''
+                      }`}
+                      aria-label={`View photograph: ${photo.caption || photo.title}`}
+                    >
+                      <img
+                        src={photo.thumbnail || photo.src}
+                        alt={photo.alt || photo.caption || 'Memorial photograph'}
+                        loading={index < 4 ? 'eager' : 'lazy'}
+                        onError={() => handleImageError(photo.id)}
+                      />
+                      <div className={styles.overlay}>
+                        <span className={styles.caption}>
+                          {photo.caption || photo.title || 'A cherished memory'}
+                        </span>
+                        <span className={styles.zoomIcon} aria-hidden="true">
+                          <Maximize2 size={16} />
+                        </span>
+                      </div>
+                    </button>
+                  );
+                })}
+              </div>
+
+              {/* View Full Gallery Button after 30 images */}
+              <div className={styles.galleryAction}>
+                <a
+                  href={mediaConfig.googlePhotosAlbumUrl || mediaConfig.oneDriveFolderUrl}
+                  target="_blank"
+                  rel="noreferrer"
+                  className={styles.viewGalleryButton}
+                >
+                  View Gallery <ExternalLink size={18} />
+                </a>
+                <p className={styles.gallerySubtext}>
+                  Explore the full archive containing all photos & videos directly
+                </p>
+              </div>
+            </>
           )}
-
-          <div className={styles.note}>
-            <strong>Google Photos Memorial Album</strong>
-            <span>
-              All original high-resolution photographs are preserved in the family’s Google Photos memorial album.
-              To view the full album or upload additional memorial photographs, use the album link above.
-            </span>
-          </div>
         </div>
       </section>
 
@@ -206,7 +215,7 @@ export default function PhotosPage() {
               <X size={22} />
             </button>
 
-            {validPhotos.length > 1 && (
+            {displayedPhotos.length > 1 && (
               <>
                 <button
                   className={`${styles.navButton} ${styles.prevButton}`}
@@ -238,7 +247,7 @@ export default function PhotosPage() {
                 {activePhoto.caption || activePhoto.title}
               </p>
               <span className={styles.lightboxCounter}>
-                {selectedIndex + 1} / {validPhotos.length}
+                {selectedIndex + 1} / {displayedPhotos.length}
               </span>
             </div>
           </div>

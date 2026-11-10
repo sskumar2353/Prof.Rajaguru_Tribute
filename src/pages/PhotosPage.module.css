@@ -200,24 +200,48 @@
   cursor: pointer;
 }
 
-.note {
+.galleryAction {
+  margin-top: 48px;
   display: flex;
-  gap: 18px;
-  margin-top: 36px;
-  padding: 20px 24px;
-  border-left: 3px solid #b08c43;
-  background: #fffdf8;
-  color: #74736e;
-  font-size: 0.82rem;
-  line-height: 1.7;
-  border-radius: 0 4px 4px 0;
-  box-shadow: 0 4px 14px rgba(48, 58, 93, 0.03);
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  padding: 30px 20px;
+  text-align: center;
 }
 
-.note strong {
-  color: #303a5d;
-  white-space: nowrap;
+.viewGalleryButton {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  padding: 15px 36px;
+  background: #303a5d;
+  color: #fffdf8;
+  font-family: 'DM Sans', sans-serif;
+  font-size: 0.95rem;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  text-decoration: none;
+  border-radius: 4px;
+  box-shadow: 0 8px 24px rgba(48, 58, 93, 0.16);
+  transition: all 0.25s ease;
 }
+
+.viewGalleryButton:hover {
+  background: #232b45;
+  color: #fff;
+  transform: translateY(-2px);
+  box-shadow: 0 12px 30px rgba(48, 58, 93, 0.24);
+}
+
+.gallerySubtext {
+  margin: 0;
+  font-size: 0.86rem;
+  color: #74736e;
+  letter-spacing: 0.02em;
+}
+
 
 /* Fullscreen Lightbox */
 .lightbox {
@@ -378,9 +402,5 @@
   .card.wide {
     grid-column: span 1;
     grid-row: span 1;
-  }
-  .note {
-    flex-direction: column;
-    gap: 6px;
   }
 }
