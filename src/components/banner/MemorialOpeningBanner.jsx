@@ -21,38 +21,55 @@ export default function MemorialOpeningBanner() {
     <aside className={styles.banner} aria-label="Memorial Service Announcement">
       <div className={styles.inner}>
         <div className={styles.pill}>
-          <Sparkles size={14} className={styles.sparkle} />
+          <Sparkles size={13} className={styles.sparkle} />
           <span>Memorial Service</span>
         </div>
 
         <div className={styles.textContainer}>
-          <span className={styles.dateInfo}>
-            <Calendar size={14} />
-            <strong>{service.date}</strong> at <strong>{service.time}</strong>
+          {/* Desktop & Tablet details */}
+          <span className={styles.desktopText}>
+            <span className={styles.dateInfo}>
+              <Calendar size={14} />
+              <strong>{service.date}</strong> at <strong>{service.time}</strong>
+            </span>
+            <span className={styles.separator} aria-hidden="true">•</span>
+            <span className={styles.venueInfo}>
+              <MapPin size={14} />
+              {service.hall}, Kilpauk
+            </span>
           </span>
-          <span className={styles.separator} aria-hidden="true">•</span>
-          <span className={styles.venueInfo}>
-            <MapPin size={14} />
-            {service.hall}, {service.church}, Kilpauk
+
+          {/* Mobile compact details */}
+          <span className={styles.mobileText}>
+            <Calendar size={13} className={styles.calendarIcon} />
+            <span className={styles.mobileDateText}>
+              <strong>16th Nov</strong>, 6 PM
+            </span>
+            <span className={styles.mobileSeparator}>•</span>
+            <span className={styles.mobileVenue}>Kilpauk</span>
           </span>
         </div>
 
-        <a
-          href="#service-invitation"
-          onClick={scrollToSection}
-          className={styles.viewLink}
-        >
-          View Invitation <ArrowRight size={14} />
-        </a>
+        <div className={styles.actions}>
+          <a
+            href="#service-invitation"
+            onClick={scrollToSection}
+            className={styles.viewLink}
+          >
+            <span className={styles.viewFull}>View Invitation</span>
+            <span className={styles.viewShort}>View</span>
+            <ArrowRight size={13} />
+          </a>
 
-        <button
-          type="button"
-          className={styles.closeButton}
-          onClick={() => setDismissed(true)}
-          aria-label="Dismiss banner"
-        >
-          <X size={16} />
-        </button>
+          <button
+            type="button"
+            className={styles.closeButton}
+            onClick={() => setDismissed(true)}
+            aria-label="Dismiss banner"
+          >
+            <X size={15} />
+          </button>
+        </div>
       </div>
     </aside>
   );

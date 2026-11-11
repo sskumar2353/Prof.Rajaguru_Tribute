@@ -302,22 +302,41 @@
 
 @media (max-width: 760px) {
   .hero {
-    min-height: 520px;
+    min-height: 500px;
+  }
+  .content {
+    padding: 36px 16px 36px;
   }
   .eyebrow {
-    font-size: 23px;
+    font-size: 22px;
+    margin-bottom: 16px;
   }
   .portraitFrame {
-    width: 200px;
-    height: 236px;
+    width: 210px;
+    height: 248px;
   }
   .content h1 {
-    font-size: 30px;
+    font-size: 28px;
+    margin: 14px 0 6px;
   }
   .subtitle {
-    font-size: 20px;
+    font-size: 19px;
   }
   .navButton {
-    opacity: 0.85; /* always visible on touch devices */
+    width: 26px;
+    height: 26px;
+    background: rgba(36, 44, 71, 0.4);
+    opacity: 0.4;
+    transition: opacity 0.2s ease, background 0.2s ease;
+  }
+  .navButton:active {
+    opacity: 0.9;
+    background: rgba(36, 44, 71, 0.85);
+  }
+  .prevButton {
+    left: 4px;
+  }
+  .nextButton {
+    right: 4px;
   }
 }

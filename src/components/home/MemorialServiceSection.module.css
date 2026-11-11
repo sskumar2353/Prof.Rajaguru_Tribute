@@ -329,44 +329,54 @@
 ---------------------------------- */
 @media (max-width: 900px) {
   .section {
-    padding: 60px 16px 70px;
+    padding: 48px 14px 56px;
+  }
+
+  .container {
+    padding: 0;
+  }
+
+  .header {
+    margin: 0 auto 32px;
   }
 
   .cardWrapper {
     grid-template-columns: 1fr;
-    padding: 24px 20px;
-    gap: 28px;
+    padding: 18px 14px;
+    gap: 22px;
+    border-radius: 6px;
   }
 
   .flyerButton {
     max-width: 100%;
   }
 
+  /* Keep flyer completely clean on mobile: NO overlay blocking the portrait/details */
   .expandOverlay {
-    opacity: 0.85; /* always visible on touch */
-    background: linear-gradient(to top, rgba(30, 37, 60, 0.8) 0%, transparent 40%);
-    align-items: flex-end;
-    padding-bottom: 14px;
-  }
-
-  .expandOverlay span {
-    font-size: 0.8rem;
+    display: none !important;
   }
 
   .honoreeTitle {
-    font-size: 1.3rem;
+    font-size: 1.25rem;
   }
 
   .honoreeTitle strong {
-    font-size: 1.45rem;
+    font-size: 1.4rem;
+  }
+
+  .metaList {
+    gap: 14px;
+    padding: 14px 0;
+    margin: 8px 0 14px;
   }
 
   .metaValue {
-    font-size: 0.98rem;
+    font-size: 0.95rem;
   }
 
   .actionButtons {
     flex-direction: column;
+    gap: 10px;
   }
 
   .primaryBtn,
