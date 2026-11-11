@@ -2,18 +2,22 @@ import { Heart } from 'lucide-react';
 import styles from './TributeCard.module.css';
 
 export default function TributeCard({ tribute }) {
-  const date = new Intl.DateTimeFormat('en-US', {
-    month: 'long',
-    day: 'numeric',
-    year: 'numeric',
-  }).format(new Date(tribute.created_at));
+  const isInvalid = (val) => {
+    if (!val) return true;
+    const lower = String(val).trim().toLowerCase();
+    return (
+      lower.length === 0 ||
+      lower === 'not specified' ||
+      lower === 'not available' ||
+      lower === 'null' ||
+      lower === 'undefined' ||
+      lower === 'anonymous' ||
+      lower === 'none'
+    );
+  };
 
-  const rawPlace = tribute.place ? String(tribute.place).trim() : '';
-  const hasPlace =
-    rawPlace.length > 0 &&
-    rawPlace.toLowerCase() !== 'not specified' &&
-    rawPlace.toLowerCase() !== 'null' &&
-    rawPlace.toLowerCase() !== 'undefined';
+  const name = isInvalid(tribute.name) ? '' : String(tribute.name).trim();
+  const place = isInvalid(tribute.place) ? '' : String(tribute.place).trim();
 
   return (
     <article className={styles.card}>
@@ -21,13 +25,12 @@ export default function TributeCard({ tribute }) {
         <Heart size={17} />
       </div>
       <p className={styles.message}>“{tribute.message}”</p>
-      <div className={styles.meta}>
-        <div>
-          <strong className={styles.name}>{tribute.name}</strong>
-          {hasPlace && <span className={styles.place}>{rawPlace}</span>}
+      {(name || place) && (
+        <div className={styles.meta}>
+          <strong className={styles.name}>{name}</strong>
+          <span className={styles.place}>{place}</span>
         </div>
-        <span className={styles.date}>{date}</span>
-      </div>
+      )}
     </article>
   );
 }

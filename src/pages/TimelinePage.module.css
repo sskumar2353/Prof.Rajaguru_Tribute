@@ -41,15 +41,15 @@
 .timeline {
   position: relative;
   width: min(1080px, 100%);
-  min-height: 1840px;
   margin: 0 auto;
 }
 
 .pathSvg {
   position: absolute;
-  inset: 0;
+  top: 0;
+  left: 0;
   width: 100%;
-  height: 100%;
+  height: 2000px;
   overflow: visible;
   pointer-events: none;
 }
@@ -75,7 +75,7 @@
 
 .items {
   position: relative;
-  height: 1800px;
+  height: 2000px;
 }
 
 .item {
@@ -94,14 +94,14 @@
   transform: translateY(0);
 }
 
-.item:nth-child(1) { top: 45px; }
-.item:nth-child(2) { top: 285px; }
-.item:nth-child(3) { top: 525px; }
-.item:nth-child(4) { top: 765px; }
-.item:nth-child(5) { top: 1005px; }
-.item:nth-child(6) { top: 1245px; }
-.item:nth-child(7) { top: 1485px; }
-.item:nth-child(8) { top: 1725px; }
+.item:nth-child(1) { top: 40px; }
+.item:nth-child(2) { top: 280px; }
+.item:nth-child(3) { top: 520px; }
+.item:nth-child(4) { top: 760px; }
+.item:nth-child(5) { top: 1000px; }
+.item:nth-child(6) { top: 1240px; }
+.item:nth-child(7) { top: 1480px; }
+.item:nth-child(8) { top: 1720px; }
 
 .item.left {
   justify-content: flex-start;
@@ -187,14 +187,26 @@
 }
 
 .end {
-  position: absolute;
-  left: 50%;
-  bottom: -3px;
-  transform: translateX(-50%);
+  position: relative;
+  margin: 64px auto 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
   color: #5d6da8;
   font-family: Georgia, 'Times New Roman', serif;
-  font-size: 0.95rem;
+  font-size: 1.05rem;
   font-style: italic;
+  text-align: center;
+  z-index: 2;
+}
+
+.endMarker {
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  background: #cbb77a;
+  box-shadow: 0 0 0 6px rgba(203, 183, 122, 0.25);
 }
 
 .empty {
@@ -238,30 +250,43 @@
   }
 
   .intro {
-    margin-bottom: 55px;
+    margin-bottom: 50px;
   }
 
   .timeline {
+    width: 100%;
     min-height: 0;
-    padding-left: 52px;
+    padding-left: 56px;
+    position: relative;
   }
 
   .pathSvg {
-    left: 26px;
-    width: 52px;
-    height: 100%;
+    display: none;
   }
 
-  .pathBase,
-  .pathAccent {
-    d: path('M 26 0 C 8 180, 44 320, 26 500 S 8 820, 26 1000 S 44 1320, 26 1500 S 8 1740, 26 1900');
+  .timeline::before {
+    content: '';
+    position: absolute;
+    left: 23px;
+    top: 24px;
+    bottom: 50px;
+    width: 2px;
+    background: linear-gradient(
+      to bottom,
+      #cbb77a 0%,
+      rgba(92, 109, 170, 0.55) 20%,
+      rgba(92, 109, 170, 0.55) 80%,
+      #cbb77a 100%
+    );
+    border-radius: 1px;
   }
 
   .items {
     height: auto;
     display: flex;
     flex-direction: column;
-    gap: 22px;
+    gap: 28px;
+    position: relative;
   }
 
   .item,
@@ -269,34 +294,66 @@
   .item.right {
     position: relative;
     top: auto !important;
-    min-height: 190px;
-    padding: 0 0 0 24px;
-    justify-content: flex-start;
+    left: auto !important;
+    width: 100%;
+    padding: 0;
+    margin: 0;
+    display: block;
+    min-height: 0;
   }
 
   .marker {
-    left: -26px;
-    top: 28px;
-    width: 46px;
-    height: 46px;
+    position: absolute;
+    left: -56px;
+    top: 22px;
+    transform: none;
+    width: 44px;
+    height: 44px;
+    display: grid;
+    place-items: center;
+    border-radius: 50%;
+    background: #303a5d;
+    border: 2px solid #cbb77a;
+    box-shadow: 0 4px 14px rgba(48, 58, 93, 0.22);
+    z-index: 3;
   }
 
   .marker::before {
-    width: 28px;
-    height: 28px;
+    display: none;
+  }
+
+  .marker span {
+    color: #fffdf8;
+    font-size: 0.72rem;
+    font-weight: 700;
+    letter-spacing: 0.05em;
   }
 
   .card {
     width: 100%;
-    padding: 23px;
+    padding: 24px 22px;
+    background: #fffdf8;
+    border: 1px solid rgba(48, 58, 93, 0.12);
+    border-radius: 4px;
+    box-shadow: 0 8px 24px rgba(48, 58, 93, 0.05);
+  }
+
+  .card h3 {
+    font-size: 1.35rem;
+    margin: 6px 0 10px;
+  }
+
+  .card p {
+    font-size: 0.9rem;
+    line-height: 1.7;
   }
 
   .end {
-    position: relative;
-    left: auto;
-    bottom: auto;
-    margin: 35px 0 0;
-    transform: none;
+    margin: 48px 0 0 -56px;
     text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
   }
 }

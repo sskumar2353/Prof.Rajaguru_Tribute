@@ -18,7 +18,7 @@ export default function TimelinePage() {
           if (entry.isIntersecting) entry.target.classList.add(styles.visible);
         });
       },
-      { threshold: 0.18 }
+      { threshold: 0.15 }
     );
 
     nodes.forEach((node) => observer.observe(node));
@@ -50,17 +50,17 @@ export default function TimelinePage() {
           <div className={styles.timeline} ref={timelineRef}>
             <svg
               className={styles.pathSvg}
-              viewBox="0 0 1000 1800"
+              viewBox="0 0 1000 2000"
               preserveAspectRatio="none"
               aria-hidden="true"
             >
               <path
                 className={styles.pathBase}
-                d="M500 40 C 350 140, 350 250, 500 340 S 650 540, 500 640 S 350 840, 500 940 S 650 1140, 500 1240 S 350 1440, 500 1760"
+                d="M500 40 C 350 140, 350 250, 500 340 S 650 540, 500 640 S 350 840, 500 940 S 650 1140, 500 1240 S 350 1440, 500 1480 S 650 1680, 500 1780 L 500 1960"
               />
               <path
                 className={styles.pathAccent}
-                d="M500 40 C 350 140, 350 250, 500 340 S 650 540, 500 640 S 350 840, 500 940 S 650 1140, 500 1240 S 350 1440, 500 1760"
+                d="M500 40 C 350 140, 350 250, 500 340 S 650 540, 500 640 S 350 840, 500 940 S 650 1140, 500 1240 S 350 1440, 500 1480 S 650 1680, 500 1780 L 500 1960"
               />
             </svg>
 
@@ -87,7 +87,10 @@ export default function TimelinePage() {
               ))}
             </div>
 
-            <div className={styles.end}>Forever remembered</div>
+            <div className={styles.end}>
+              <span className={styles.endMarker} aria-hidden="true" />
+              <span>Forever remembered</span>
+            </div>
           </div>
         ) : (
           <div className={styles.empty}>

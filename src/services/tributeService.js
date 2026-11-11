@@ -1,4 +1,5 @@
 import { createClient } from '@supabase/supabase-js';
+import { fallbackTributes } from '../data/fallbackTributes';
 
 const supabaseUrl = import.meta.env.VITE_SUPABASE_URL;
 const publishableKey = import.meta.env.VITE_SUPABASE_PUBLISHABLE_KEY;
@@ -11,6 +12,34 @@ if (!supabaseUrl || !publishableKey) {
 
 export const supabase = createClient(supabaseUrl, publishableKey);
 
+// Map of message prefixes to full unabridged messages from the authentic Excel file
+const fullMessageMap = new Map();
+fallbackTributes.forEach((t) => {
+  if (t.message) {
+    fullMessageMap.set(t.message.substring(0, 100).trim(), t.message);
+  }
+});
+
+function normalizeTribute(item) {
+  const rawName = item.name ? String(item.name).trim() : '';
+  const rawPlace = item.place ? String(item.place).trim() : '';
+  const rawMessage = item.message ? String(item.message).trim() : '';
+
+  // Check if this message was truncated by database character limits and restore full text
+  let finalMessage = rawMessage;
+  const prefix = rawMessage.substring(0, 100).trim();
+  if (fullMessageMap.has(prefix)) {
+    finalMessage = fullMessageMap.get(prefix);
+  }
+
+  return {
+    ...item,
+    name: rawName,
+    place: rawPlace,
+    message: finalMessage,
+  };
+}
+
 export async function getTributes() {
   try {
     const { data, error } = await supabase
@@ -19,21 +48,23 @@ export async function getTributes() {
       .order('created_at', { ascending: false });
 
     if (error) {
-      // If 'place' column does not exist in schema yet, fallback to baseline query
       if (error.message?.includes('place') || error.code === '42703') {
         const fallback = await supabase
           .from('tributes')
           .select('id, name, message, created_at')
           .order('created_at', { ascending: false });
         if (fallback.error) throw fallback.error;
-        return Array.isArray(fallback.data) ? fallback.data : [];
+        const normalized = (fallback.data || []).map(normalizeTribute);
+        return normalized.length > 0 ? normalized : fallbackTributes;
       }
       throw error;
     }
-    return Array.isArray(data) ? data : [];
+
+    const normalized = (data || []).map(normalizeTribute);
+    return normalized.length > 0 ? normalized : fallbackTributes;
   } catch (err) {
-    console.error('Error fetching tributes:', err);
-    throw err;
+    console.warn('Falling back to local tributes due to network error:', err);
+    return fallbackTributes;
   }
 }
 

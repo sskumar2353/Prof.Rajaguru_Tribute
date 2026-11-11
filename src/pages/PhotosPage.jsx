@@ -1,9 +1,11 @@
 import { useState, useEffect, useCallback } from 'react';
-import { ExternalLink, Images, Maximize2, X, ChevronLeft, ChevronRight, RefreshCw, ArrowRight } from 'lucide-react';
+import { Images, Maximize2, X, ChevronLeft, ChevronRight, RefreshCw } from 'lucide-react';
 import PageIntro from '../components/common/PageIntro';
-import { mediaConfig } from '../config/media';
 import { getMemorialPhotos } from '../services/photoService';
 import styles from './PhotosPage.module.css';
+
+const INITIAL_BATCH = 48;
+const BATCH_INCREMENT = 48;
 
 export default function PhotosPage() {
   const [photos, setPhotos] = useState([]);
@@ -11,6 +13,7 @@ export default function PhotosPage() {
   const [error, setError] = useState('');
   const [selectedIndex, setSelectedIndex] = useState(null);
   const [brokenImageIds, setBrokenImageIds] = useState(new Set());
+  const [visibleCount, setVisibleCount] = useState(INITIAL_BATCH);
 
   const loadPhotos = useCallback(async () => {
     try {
@@ -30,32 +33,40 @@ export default function PhotosPage() {
     loadPhotos();
   }, [loadPhotos]);
 
-  // Handle broken images gracefully so broken icons are never displayed
   function handleImageError(id) {
     setBrokenImageIds((prev) => new Set(prev).add(id));
   }
 
-  // Filter out any broken images, limit strictly to first 30 pure photographs
+  // All valid photographs preserved within the application
   const validPhotos = photos.filter((p) => !brokenImageIds.has(p.id));
-  const displayedPhotos = validPhotos.slice(0, 30);
+  const displayedPhotos = validPhotos.slice(0, visibleCount);
+  const hasMore = visibleCount < validPhotos.length;
 
-  // Lightbox navigation
+  function loadMore() {
+    setVisibleCount((prev) => Math.min(prev + BATCH_INCREMENT, validPhotos.length));
+  }
+
+  function showAll() {
+    setVisibleCount(validPhotos.length);
+  }
+
+  // Lightbox navigation (allows cycling through all loaded valid photos)
   const openLightbox = (index) => setSelectedIndex(index);
   const closeLightbox = () => setSelectedIndex(null);
 
   const prevImage = useCallback(() => {
-    if (displayedPhotos.length === 0) return;
+    if (validPhotos.length === 0) return;
     setSelectedIndex((current) =>
-      current === 0 ? displayedPhotos.length - 1 : current - 1
+      current === 0 ? validPhotos.length - 1 : current - 1
     );
-  }, [displayedPhotos.length]);
+  }, [validPhotos.length]);
 
   const nextImage = useCallback(() => {
-    if (displayedPhotos.length === 0) return;
+    if (validPhotos.length === 0) return;
     setSelectedIndex((current) =>
-      current === displayedPhotos.length - 1 ? 0 : current + 1
+      current === validPhotos.length - 1 ? 0 : current + 1
     );
-  }, [displayedPhotos.length]);
+  }, [validPhotos.length]);
 
   useEffect(() => {
     if (selectedIndex === null) return;
@@ -75,7 +86,7 @@ export default function PhotosPage() {
     };
   }, [selectedIndex, prevImage, nextImage]);
 
-  const activePhoto = selectedIndex !== null ? displayedPhotos[selectedIndex] : null;
+  const activePhoto = selectedIndex !== null ? validPhotos[selectedIndex] : null;
 
   return (
     <>
@@ -92,14 +103,11 @@ export default function PhotosPage() {
               <span className={styles.eyebrow}>In remembrance</span>
               <h2>Moments we cherish</h2>
             </div>
-            <a
-              className={styles.archiveButton}
-              href={mediaConfig.googlePhotosAlbumUrl || mediaConfig.oneDriveFolderUrl}
-              target="_blank"
-              rel="noreferrer"
-            >
-              Open Gallery <ExternalLink size={15} />
-            </a>
+            {validPhotos.length > 0 && (
+              <span className={styles.photoBadge}>
+                {validPhotos.length} Photographs
+              </span>
+            )}
           </div>
 
           {loading && (
@@ -122,27 +130,18 @@ export default function PhotosPage() {
             </div>
           )}
 
-          {!loading && !error && displayedPhotos.length === 0 && (
+          {!loading && !error && validPhotos.length === 0 && (
             <div className={styles.empty}>
               <Images size={34} />
               <h3>Photographs are being prepared</h3>
               <p>The memorial photo archive is currently being updated.</p>
-              <a
-                href={mediaConfig.googlePhotosAlbumUrl || mediaConfig.oneDriveFolderUrl}
-                target="_blank"
-                rel="noreferrer"
-                className={styles.archiveButton}
-              >
-                Open Gallery <ExternalLink size={15} />
-              </a>
             </div>
           )}
 
-          {!loading && !error && displayedPhotos.length > 0 && (
+          {!loading && !error && validPhotos.length > 0 && (
             <>
               <div className={styles.grid}>
                 {displayedPhotos.map((photo, index) => {
-                  // Editorial composition: first image is featured, fifth image is wide
                   const isFeatured = index === 0;
                   const isWide = index === 4;
 
@@ -159,7 +158,7 @@ export default function PhotosPage() {
                       <img
                         src={photo.thumbnail || photo.src}
                         alt="Memorial photograph of Prof. Rajaguru"
-                        loading={index < 4 ? 'eager' : 'lazy'}
+                        loading={index < 6 ? 'eager' : 'lazy'}
                         onError={() => handleImageError(photo.id)}
                       />
                       <div className={styles.hoverIndicator} aria-hidden="true">
@@ -170,20 +169,24 @@ export default function PhotosPage() {
                 })}
               </div>
 
-              {/* View Full Gallery Button after 30 images */}
-              <div className={styles.galleryAction}>
-                <a
-                  href={mediaConfig.googlePhotosAlbumUrl || mediaConfig.oneDriveFolderUrl}
-                  target="_blank"
-                  rel="noreferrer"
-                  className={styles.viewGalleryButton}
-                >
-                  View Gallery <ExternalLink size={18} />
-                </a>
-                <p className={styles.gallerySubtext}>
-                  Explore the full archive containing all photos & videos directly
-                </p>
-              </div>
+              {hasMore && (
+                <div className={styles.loadMoreContainer}>
+                  <button
+                    type="button"
+                    onClick={loadMore}
+                    className={styles.loadMoreButton}
+                  >
+                    Load More Photographs ({validPhotos.length - visibleCount} remaining)
+                  </button>
+                  <button
+                    type="button"
+                    onClick={showAll}
+                    className={styles.showAllButton}
+                  >
+                    Show All {validPhotos.length}
+                  </button>
+                </div>
+              )}
             </>
           )}
         </div>
@@ -210,7 +213,7 @@ export default function PhotosPage() {
               <X size={22} />
             </button>
 
-            {displayedPhotos.length > 1 && (
+            {validPhotos.length > 1 && (
               <>
                 <button
                   className={`${styles.navButton} ${styles.prevButton}`}
@@ -232,14 +235,14 @@ export default function PhotosPage() {
             <div className={styles.imageContainer}>
               <img
                 src={activePhoto.src}
-                alt={activePhoto.alt || activePhoto.caption}
+                alt={activePhoto.alt || 'Memorial photograph'}
                 className={styles.lightboxImage}
               />
             </div>
 
             <div className={styles.lightboxMeta}>
               <span className={styles.lightboxCounter}>
-                {selectedIndex + 1} / {displayedPhotos.length}
+                {selectedIndex + 1} / {validPhotos.length}
               </span>
             </div>
           </div>

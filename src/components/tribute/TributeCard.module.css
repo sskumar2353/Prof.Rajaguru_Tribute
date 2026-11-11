@@ -29,11 +29,12 @@
   font: italic 18px/1.7 Georgia, serif;
   color: #28272b;
   margin: 6px 0 24px;
+  white-space: pre-line;
 }
 
 .meta {
   display: flex;
-  align-items: flex-end;
+  align-items: baseline;
   justify-content: space-between;
   border-top: 1px solid rgba(48, 58, 93, 0.08);
   padding-top: 16px;
@@ -42,21 +43,15 @@
 }
 
 .name {
-  display: block;
   color: #303a5d;
   font-size: 14px;
   font-weight: 600;
+  text-align: left;
 }
 
 .place {
-  display: block;
-  font-size: 12px;
+  font-size: 13px;
   color: #74736e;
-  margin-top: 2px;
-}
-
-.date {
-  font-size: 12px;
-  color: #8b887f;
-  white-space: nowrap;
+  text-align: right;
+  margin-left: auto;
 }

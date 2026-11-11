@@ -61,7 +61,7 @@ export default function TributeForm({ onCreated }) {
             value={form.name}
             onChange={update}
             maxLength={100}
-            placeholder="e.g. John & Sarah Perera"
+            placeholder="e.g. Bro. David or Dr. Grace"
             required
           />
         </label>
@@ -73,7 +73,7 @@ export default function TributeForm({ onCreated }) {
             value={form.place}
             onChange={update}
             maxLength={100}
-            placeholder="e.g. Kandy, Sri Lanka or Sydney, Australia"
+            placeholder="e.g. Chennai, Madurai, or Hyderabad"
           />
         </label>
 
@@ -96,7 +96,7 @@ export default function TributeForm({ onCreated }) {
             onChange={update}
             maxLength={1000}
             rows={5}
-            placeholder="Write a memory, a message of gratitude, or a prayer..."
+            placeholder="Share a memory, message of gratitude, or a prayer..."
             required
           />
         </label>
