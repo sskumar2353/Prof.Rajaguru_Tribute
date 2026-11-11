@@ -1,0 +1,377 @@
+.section {
+  padding: 80px 24px 90px;
+  background: #f7f4ed;
+  position: relative;
+}
+
+.container {
+  max-width: 1140px;
+  margin: 0 auto;
+}
+
+.header {
+  text-align: center;
+  max-width: 680px;
+  margin: 0 auto 48px;
+}
+
+.eyebrow {
+  display: block;
+  font-family: 'DM Sans', sans-serif;
+  color: #6574b4;
+  font-size: 0.76rem;
+  font-weight: 700;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  margin-bottom: 8px;
+}
+
+.title {
+  margin: 0 0 12px;
+  color: #303a5d;
+  font-family: Georgia, 'Times New Roman', serif;
+  font-size: clamp(2rem, 4vw, 2.8rem);
+  font-weight: 400;
+}
+
+.verse {
+  margin: 0;
+  font-family: Georgia, serif;
+  font-style: italic;
+  font-size: 1.05rem;
+  color: #74736e;
+  line-height: 1.6;
+}
+
+/* 2-Column Responsive Card Wrapper */
+.cardWrapper {
+  display: grid;
+  grid-template-columns: 420px 1fr;
+  gap: 36px;
+  align-items: center;
+  background: #fffdf8;
+  border: 1px solid rgba(48, 58, 93, 0.12);
+  border-radius: 8px;
+  padding: 36px;
+  box-shadow: 0 16px 45px rgba(48, 58, 93, 0.07);
+}
+
+/* Left: Flyer Image */
+.flyerCol {
+  display: flex;
+  justify-content: center;
+}
+
+.flyerButton {
+  position: relative;
+  border: none;
+  background: transparent;
+  padding: 0;
+  cursor: pointer;
+  border-radius: 6px;
+  overflow: hidden;
+  box-shadow:
+    0 18px 40px rgba(48, 58, 93, 0.16),
+    0 0 0 1px rgba(203, 183, 122, 0.45);
+  display: block;
+  width: 100%;
+  max-width: 400px;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.flyerButton:hover {
+  transform: translateY(-3px);
+  box-shadow:
+    0 24px 50px rgba(48, 58, 93, 0.22),
+    0 0 0 2px rgba(203, 183, 122, 0.7);
+}
+
+.flyerImage {
+  width: 100%;
+  height: auto;
+  display: block;
+  border-radius: 6px;
+}
+
+.expandOverlay {
+  position: absolute;
+  inset: 0;
+  background: rgba(30, 37, 60, 0.65);
+  color: #fffdf8;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  opacity: 0;
+  transition: opacity 0.25s ease;
+  font-family: 'DM Sans', sans-serif;
+  font-size: 0.88rem;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+}
+
+.flyerButton:hover .expandOverlay {
+  opacity: 1;
+}
+
+/* Right: Details Column */
+.detailsCol {
+  display: flex;
+  flex-direction: column;
+}
+
+.detailsCard {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.cardBadge {
+  align-self: flex-start;
+  padding: 4px 12px;
+  background: rgba(203, 183, 122, 0.2);
+  border: 1px solid rgba(203, 183, 122, 0.45);
+  border-radius: 20px;
+  color: #b08c43;
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+.honoreeTitle {
+  margin: 0;
+  color: #303a5d;
+  font-family: Georgia, serif;
+  font-weight: 400;
+  font-size: 1.5rem;
+  line-height: 1.35;
+}
+
+.honoreeTitle strong {
+  font-size: 1.75rem;
+  color: #242c47;
+}
+
+.years {
+  margin: -6px 0 10px;
+  font-size: 0.88rem;
+  color: #74736e;
+  letter-spacing: 0.1em;
+  font-family: 'DM Sans', sans-serif;
+}
+
+.metaList {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+  margin: 10px 0 16px;
+  padding: 18px 0;
+  border-top: 1px solid rgba(48, 58, 93, 0.08);
+  border-bottom: 1px solid rgba(48, 58, 93, 0.08);
+}
+
+.metaItem {
+  display: flex;
+  align-items: flex-start;
+  gap: 14px;
+}
+
+.metaIcon {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background: rgba(48, 58, 93, 0.06);
+  color: #303a5d;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.metaLabel {
+  display: block;
+  font-size: 0.72rem;
+  color: #74736e;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  font-weight: 600;
+  margin-bottom: 2px;
+}
+
+.metaValue {
+  display: block;
+  font-size: 1.05rem;
+  color: #303a5d;
+  font-family: 'DM Sans', sans-serif;
+  font-weight: 600;
+}
+
+.addressLine {
+  display: block;
+  font-size: 0.88rem;
+  color: #62605b;
+  margin-top: 2px;
+}
+
+.actionButtons {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin-top: 8px;
+}
+
+.primaryBtn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 12px 22px;
+  background: #303a5d;
+  color: #fffdf8;
+  border: none;
+  border-radius: 4px;
+  font-size: 0.88rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  box-shadow: 0 4px 14px rgba(48, 58, 93, 0.18);
+}
+
+.primaryBtn:hover {
+  background: #232b45;
+  color: #fff;
+  transform: translateY(-1px);
+}
+
+.secondaryBtn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 12px 20px;
+  background: #fffdf8;
+  color: #303a5d;
+  border: 1px solid rgba(48, 58, 93, 0.2);
+  border-radius: 4px;
+  font-size: 0.88rem;
+  font-weight: 600;
+  text-decoration: none;
+  transition: all 0.2s ease;
+}
+
+.secondaryBtn:hover {
+  background: rgba(48, 58, 93, 0.05);
+  border-color: #303a5d;
+  color: #1e253c;
+}
+
+/* ---------------------------------
+   FULLSCREEN LIGHTBOX
+---------------------------------- */
+.lightbox {
+  position: fixed;
+  inset: 0;
+  z-index: 100;
+  background: rgba(20, 25, 42, 0.94);
+  backdrop-filter: blur(8px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+  animation: fadeIn 0.25s ease;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+.lightboxContent {
+  position: relative;
+  max-width: 90vw;
+  max-height: 92vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.modalImage {
+  max-width: 100%;
+  max-height: 90vh;
+  object-fit: contain;
+  border-radius: 6px;
+  box-shadow: 0 25px 70px rgba(0, 0, 0, 0.6);
+}
+
+.closeBtn {
+  position: absolute;
+  top: -46px;
+  right: 0;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  border: none;
+  background: rgba(255, 255, 255, 0.15);
+  color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.closeBtn:hover {
+  background: rgba(255, 255, 255, 0.3);
+}
+
+/* ---------------------------------
+   MOBILE RESPONSIVENESS
+---------------------------------- */
+@media (max-width: 900px) {
+  .section {
+    padding: 60px 16px 70px;
+  }
+
+  .cardWrapper {
+    grid-template-columns: 1fr;
+    padding: 24px 20px;
+    gap: 28px;
+  }
+
+  .flyerButton {
+    max-width: 100%;
+  }
+
+  .expandOverlay {
+    opacity: 0.85; /* always visible on touch */
+    background: linear-gradient(to top, rgba(30, 37, 60, 0.8) 0%, transparent 40%);
+    align-items: flex-end;
+    padding-bottom: 14px;
+  }
+
+  .expandOverlay span {
+    font-size: 0.8rem;
+  }
+
+  .honoreeTitle {
+    font-size: 1.3rem;
+  }
+
+  .honoreeTitle strong {
+    font-size: 1.45rem;
+  }
+
+  .metaValue {
+    font-size: 0.98rem;
+  }
+
+  .actionButtons {
+    flex-direction: column;
+  }
+
+  .primaryBtn,
+  .secondaryBtn {
+    justify-content: center;
+    width: 100%;
+  }
+}

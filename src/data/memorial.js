@@ -1,15 +1,24 @@
 export const memorial = {
   portrait: '/assets/Prof. Rajaguru.jpg',
-  // 7 photo containers for hero slideshow (user can swap individual photo paths anytime)
+  // 4 photos for hero slideshow (each displaying for 3 seconds)
   heroPhotos: [
     '/assets/Prof. Rajaguru.jpg',
-    '/assets/Prof. Rajaguru.jpg',
-    '/assets/Prof. Rajaguru.jpg',
-    '/assets/Prof. Rajaguru.jpg',
-    '/assets/Prof. Rajaguru.jpg',
-    '/assets/Prof. Rajaguru.jpg',
-    '/assets/Prof. Rajaguru.jpg',
+    '/assets/Rajuguru_2.jpg',
+    '/assets/Rajuguru_3.jpeg',
+    '/assets/Rajuguru_4.jpeg',
   ],
+  memorialService: {
+    verse: '“The Righteous shall be in everlasting remembrance.” — Psalm 112:6',
+    title: 'Memorial Service Invitation',
+    subtitle: 'We cordially invite you to the memorial service of our beloved Late PROF. RAJAGURU (08.10.1945 – 15.11.2025)',
+    flyer: '/assets/Memorial_Flyer.jpeg',
+    date: 'Monday, 16th November 2026',
+    time: '06:00 PM',
+    hall: 'Bishop Manickam Hall',
+    church: 'TELC Arulnathar Church',
+    address: "Harley's Road, Davidpuram, Kilpauk, Chennai – 600 010.",
+    mapUrl: 'https://www.google.com/maps/search/?api=1&query=TELC+Arulnathar+Church+Kilpauk+Chennai',
+  },
   name: 'Prof. Rajaguru',
   dates: '08/10/1945 - 15/11/2025',
   heroTitle: 'In Loving Memory of',

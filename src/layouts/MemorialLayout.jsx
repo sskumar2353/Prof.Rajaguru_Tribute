@@ -1,4 +1,5 @@
 import { Outlet, useLocation } from 'react-router-dom';
+import MemorialOpeningBanner from '../components/banner/MemorialOpeningBanner';
 import SiteHeader from '../components/layout/SiteHeader';
 import MemorialHero from '../components/hero/MemorialHero';
 import MemorialNav from '../components/navigation/MemorialNav';
@@ -12,6 +13,7 @@ export default function MemorialLayout() {
   return (
     <>
       <ScrollToTop />
+      <MemorialOpeningBanner />
       <SiteHeader />
       {showHero && <MemorialHero />}
       <MemorialNav />

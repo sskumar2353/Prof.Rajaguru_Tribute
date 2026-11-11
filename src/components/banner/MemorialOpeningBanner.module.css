@@ -1,0 +1,140 @@
+.banner {
+  background: linear-gradient(90deg, #242c47 0%, #303a5d 50%, #242c47 100%);
+  color: #fffdf8;
+  border-bottom: 1px solid rgba(203, 183, 122, 0.35);
+  position: relative;
+  z-index: 50;
+  font-family: 'DM Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+  box-shadow: 0 4px 18px rgba(30, 37, 60, 0.25);
+}
+
+.inner {
+  max-width: 1240px;
+  margin: 0 auto;
+  padding: 10px 18px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 14px;
+  font-size: 0.88rem;
+}
+
+.pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background: rgba(203, 183, 122, 0.18);
+  border: 1px solid rgba(203, 183, 122, 0.45);
+  color: #f7df99;
+  padding: 4px 12px;
+  border-radius: 20px;
+  font-size: 0.76rem;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  white-space: nowrap;
+}
+
+.sparkle {
+  color: #f7df99;
+}
+
+.textContainer {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  color: #e9ebf2;
+  flex: 1;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.dateInfo,
+.venueInfo {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  white-space: nowrap;
+}
+
+.dateInfo strong {
+  color: #fffdf8;
+}
+
+.separator {
+  color: #cbb77a;
+  opacity: 0.6;
+}
+
+.viewLink {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background: #cbb77a;
+  color: #242c47;
+  padding: 6px 14px;
+  border-radius: 4px;
+  font-size: 0.8rem;
+  font-weight: 700;
+  text-decoration: none;
+  white-space: nowrap;
+  transition: all 0.2s ease;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+}
+
+.viewLink:hover {
+  background: #deb86d;
+  color: #1a2035;
+  transform: translateY(-1px);
+}
+
+.closeButton {
+  background: transparent;
+  border: none;
+  color: rgba(255, 255, 255, 0.65);
+  cursor: pointer;
+  padding: 4px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  transition: all 0.2s ease;
+}
+
+.closeButton:hover {
+  color: #fff;
+  background: rgba(255, 255, 255, 0.15);
+}
+
+@media (max-width: 860px) {
+  .inner {
+    padding: 9px 14px;
+    font-size: 0.82rem;
+    gap: 10px;
+  }
+
+  .textContainer {
+    justify-content: flex-start;
+  }
+
+  .separator,
+  .venueInfo {
+    display: none;
+  }
+}
+
+@media (max-width: 580px) {
+  .pill {
+    padding: 3px 8px;
+    font-size: 0.7rem;
+  }
+
+  .dateInfo {
+    font-size: 0.78rem;
+  }
+
+  .viewLink {
+    padding: 5px 10px;
+    font-size: 0.75rem;
+  }
+}

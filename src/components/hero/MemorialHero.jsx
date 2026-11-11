@@ -21,7 +21,7 @@ export default function MemorialHero() {
 
   useEffect(() => {
     if (isPaused) return;
-    const interval = setInterval(nextSlide, 4500);
+    const interval = setInterval(nextSlide, 3000);
     return () => clearInterval(interval);
   }, [nextSlide, isPaused]);
 

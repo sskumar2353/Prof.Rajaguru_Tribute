@@ -3,6 +3,7 @@ import { ArrowRight, Heart, BookOpen, Camera, PenLine } from 'lucide-react';
 import { memorial } from '../data/memorial';
 import SectionHeading from '../components/common/SectionHeading';
 import PhotoGrid from '../components/media/PhotoGrid';
+import MemorialServiceSection from '../components/home/MemorialServiceSection';
 import styles from './HomePage.module.css';
 
 export default function HomePage() {
@@ -51,6 +52,8 @@ export default function HomePage() {
           </div>
         </div>
       </section>
+
+      <MemorialServiceSection />
 
       <section className={styles.tributeCta}>
         <div className={styles.tributeCtaInner}>
