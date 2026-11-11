@@ -1,15 +1,19 @@
-import { useState, useEffect, useCallback } from 'react';
-import { ChevronLeft, ChevronRight } from 'lucide-react';
+import { useState, useEffect, useCallback, useRef } from 'react';
 import { memorial } from '../../data/memorial';
 import styles from './MemorialHero.module.css';
 
 export default function MemorialHero() {
   const slides = memorial.heroPhotos && memorial.heroPhotos.length > 0
     ? memorial.heroPhotos
-    : Array(7).fill(memorial.portrait);
+    : [memorial.portrait];
 
   const [activeSlide, setActiveSlide] = useState(0);
   const [isPaused, setIsPaused] = useState(false);
+
+  // Touch swipe support for manual navigation
+  const touchStartX = useRef(null);
+  const touchEndX = useRef(null);
+  const minSwipeDistance = 35;
 
   const nextSlide = useCallback(() => {
     setActiveSlide((prev) => (prev + 1) % slides.length);
@@ -19,11 +23,44 @@ export default function MemorialHero() {
     setActiveSlide((prev) => (prev === 0 ? slides.length - 1 : prev - 1));
   }, [slides.length]);
 
+  // Automatic slide rotation every 3 seconds
   useEffect(() => {
     if (isPaused) return;
     const interval = setInterval(nextSlide, 3000);
     return () => clearInterval(interval);
   }, [nextSlide, isPaused]);
+
+  function handleTouchStart(e) {
+    touchEndX.current = null;
+    touchStartX.current = e.targetTouches[0].clientX;
+  }
+
+  function handleTouchMove(e) {
+    touchEndX.current = e.targetTouches[0].clientX;
+  }
+
+  function handleTouchEnd() {
+    if (touchStartX.current === null || touchEndX.current === null) return;
+    const distance = touchStartX.current - touchEndX.current;
+    if (distance > minSwipeDistance) {
+      // Swiped left -> next photo
+      nextSlide();
+    } else if (distance < -minSwipeDistance) {
+      // Swiped right -> prev photo
+      prevSlide();
+    }
+  }
+
+  function handleFrameClick(e) {
+    // If user clicked/tapped without drag, advance to next photo
+    const rect = e.currentTarget.getBoundingClientRect();
+    const clickX = e.clientX - rect.left;
+    if (clickX > rect.width / 2) {
+      nextSlide();
+    } else {
+      prevSlide();
+    }
+  }
 
   return (
     <section
@@ -46,9 +83,18 @@ export default function MemorialHero() {
       <div className={styles.content}>
         <p className={styles.eyebrow}>{memorial.heroTitle}</p>
 
-        {/* 7-Photo Memorial Slideshow */}
+        {/* 3-Photo Memorial Slideshow with Swipe & Click manual navigation */}
         <div className={styles.slideshowContainer}>
-          <div className={styles.portraitFrame}>
+          <div
+            className={styles.portraitFrame}
+            onClick={handleFrameClick}
+            onTouchStart={handleTouchStart}
+            onTouchMove={handleTouchMove}
+            onTouchEnd={handleTouchEnd}
+            role="region"
+            aria-label="Memorial photographs slideshow"
+            title="Click or swipe to see next photo"
+          >
             {slides.map((src, index) => (
               <div
                 key={index}
@@ -64,31 +110,9 @@ export default function MemorialHero() {
                 />
               </div>
             ))}
-
-            {/* Navigation Arrows */}
-            {slides.length > 1 && (
-              <>
-                <button
-                  type="button"
-                  className={`${styles.navButton} ${styles.prevButton}`}
-                  onClick={prevSlide}
-                  aria-label="Previous memorial photograph"
-                >
-                  <ChevronLeft size={20} />
-                </button>
-                <button
-                  type="button"
-                  className={`${styles.navButton} ${styles.nextButton}`}
-                  onClick={nextSlide}
-                  aria-label="Next memorial photograph"
-                >
-                  <ChevronRight size={20} />
-                </button>
-              </>
-            )}
           </div>
 
-          {/* 7 Indicator Dots */}
+          {/* Indicator Dots for manual selection */}
           {slides.length > 1 && (
             <div className={styles.dots} role="tablist" aria-label="Slideshow pagination">
               {slides.map((_, index) => (

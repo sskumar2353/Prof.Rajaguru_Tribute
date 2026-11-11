@@ -1,90 +1,88 @@
+/* ==========================================================================
+   MEMORIAL HERO — ATMOSPHERIC SERENE TRIBUTE
+   ========================================================================== */
+
 .hero {
-  min-height: 580px;
   position: relative;
+  min-height: 570px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   overflow: hidden;
-  display: grid;
-  place-items: center;
-  background: #f4f0e6;
+  background: #f7f4ed;
 }
 
-/* ---------------------------------
-   ANIMATED TRIBUTE BACKGROUND
----------------------------------- */
+/* Base Soft Radial Aura */
 .canvasBackground {
   position: absolute;
   inset: 0;
   background:
-    radial-gradient(ellipse at 20% 25%, rgba(255, 255, 255, 0.85) 0%, transparent 45%),
-    radial-gradient(ellipse at 80% 75%, rgba(203, 183, 122, 0.16) 0%, transparent 50%),
-    linear-gradient(135deg, #efebe0 0%, #e8edf7 45%, #f6f3eb 100%);
-  background-size: 200% 200%;
-  animation: canvasShift 16s ease-in-out infinite alternate;
+    radial-gradient(circle at 50% 38%, rgba(255, 253, 248, 0.95) 0%, rgba(247, 244, 237, 0.92) 55%, #eae6dc 100%),
+    linear-gradient(135deg, #cbd4ca 0%, #dfe5dc 35%, #bfc9e5 100%);
+  opacity: 0.92;
+  z-index: 1;
 }
 
-@keyframes canvasShift {
-  0% {
-    background-position: 0% 0%;
-  }
-  50% {
-    background-position: 100% 50%;
-  }
-  100% {
-    background-position: 0% 100%;
-  }
-}
-
+/* Subtle Golden Radial Glow behind portrait */
 .radialAura {
   position: absolute;
   top: 50%;
   left: 50%;
+  transform: translate(-50%, -50%);
   width: 650px;
   height: 650px;
-  transform: translate(-50%, -50%);
+  border-radius: 50%;
   background: radial-gradient(
     circle,
-    rgba(203, 183, 122, 0.22) 0%,
-    rgba(102, 117, 181, 0.12) 40%,
-    transparent 70%
+    rgba(203, 183, 122, 0.28) 0%,
+    rgba(203, 183, 122, 0.12) 40%,
+    rgba(102, 117, 181, 0.08) 65%,
+    transparent 80%
   );
   filter: blur(40px);
-  animation: auraBreathe 8s ease-in-out infinite alternate;
+  z-index: 2;
+  animation: auraPulse 8s ease-in-out infinite alternate;
   pointer-events: none;
 }
 
-@keyframes auraBreathe {
+@keyframes auraPulse {
   0% {
-    transform: translate(-50%, -50%) scale(0.9);
-    opacity: 0.65;
+    transform: translate(-50%, -50%) scale(0.92);
+    opacity: 0.75;
   }
   100% {
-    transform: translate(-50%, -50%) scale(1.18);
-    opacity: 0.95;
+    transform: translate(-50%, -50%) scale(1.08);
+    opacity: 1;
   }
 }
 
+/* Gentle Soft Sunlight Bleed from top */
 .ambientGlow {
   position: absolute;
-  top: 10%;
-  right: 12%;
-  width: 380px;
+  top: -120px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 900px;
   height: 380px;
+  border-radius: 50%;
   background: radial-gradient(
-    circle,
-    rgba(255, 255, 255, 0.75) 0%,
-    rgba(203, 183, 122, 0.18) 50%,
-    transparent 70%
+    ellipse at center,
+    rgba(255, 255, 255, 0.85) 0%,
+    rgba(247, 244, 237, 0.4) 60%,
+    transparent 80%
   );
-  filter: blur(30px);
-  animation: ambientFloat 12s ease-in-out infinite alternate;
+  filter: blur(50px);
+  z-index: 2;
   pointer-events: none;
+  animation: ambientFloat 14s ease-in-out infinite alternate;
 }
 
 @keyframes ambientFloat {
   0% {
-    transform: translate(0, 0);
+    transform: translate(-50%, 0);
   }
   100% {
-    transform: translate(-35px, 30px);
+    transform: translate(-50%, 25px);
   }
 }
 
@@ -152,6 +150,8 @@
   text-align: center;
   color: #303a5d;
   padding: 48px 20px 42px;
+  width: 100%;
+  box-sizing: border-box;
 }
 
 .eyebrow {
@@ -161,7 +161,7 @@
 }
 
 /* ---------------------------------
-   7-PHOTO SLIDESHOW
+   PORTRAIT SLIDESHOW
 ---------------------------------- */
 .slideshowContainer {
   display: flex;
@@ -182,6 +182,17 @@
     0 22px 50px rgba(48, 58, 93, 0.18),
     0 0 0 1px rgba(203, 183, 122, 0.45);
   overflow: hidden;
+  cursor: pointer;
+  user-select: none;
+  touch-action: pan-y;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.portraitFrame:hover {
+  transform: translateY(-2px);
+  box-shadow:
+    0 26px 56px rgba(48, 58, 93, 0.22),
+    0 0 0 1px rgba(203, 183, 122, 0.65);
 }
 
 .slide {
@@ -206,65 +217,35 @@
   object-fit: cover;
   object-position: center 25%;
   display: block;
+  user-select: none;
+  -webkit-user-drag: none;
 }
 
-/* Slideshow Arrow Buttons */
-.navButton {
-  position: absolute;
-  top: 50%;
-  transform: translateY(-50%);
-  z-index: 5;
-  width: 32px;
-  height: 32px;
-  border-radius: 50%;
-  background: rgba(48, 58, 93, 0.65);
-  backdrop-filter: blur(4px);
-  border: 1px solid rgba(255, 255, 255, 0.3);
-  color: #fffdf8;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  cursor: pointer;
-  opacity: 0;
-  transition: opacity 0.25s ease, background 0.25s ease, transform 0.25s ease;
-}
-
-.portraitFrame:hover .navButton {
-  opacity: 1;
-}
-
-.prevButton {
-  left: 8px;
-}
-
-.nextButton {
-  right: 8px;
-}
-
-.navButton:hover {
-  background: rgba(48, 58, 93, 0.95);
-  color: #cbb77a;
-  transform: translateY(-50%) scale(1.08);
-}
-
-/* 7 Indicator Dots */
+/* Indicator Dots */
 .dots {
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: 7px;
+  gap: 8px;
   margin-top: 14px;
 }
 
 .dot {
+  position: relative;
   width: 8px;
   height: 8px;
   border-radius: 50%;
-  background: rgba(48, 58, 93, 0.25);
+  background: rgba(48, 58, 93, 0.28);
   border: none;
   padding: 0;
   cursor: pointer;
   transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.dot::before {
+  content: '';
+  position: absolute;
+  inset: -8px;
 }
 
 .dot:hover {
@@ -321,22 +302,5 @@
   }
   .subtitle {
     font-size: 19px;
-  }
-  .navButton {
-    width: 26px;
-    height: 26px;
-    background: rgba(36, 44, 71, 0.4);
-    opacity: 0.4;
-    transition: opacity 0.2s ease, background 0.2s ease;
-  }
-  .navButton:active {
-    opacity: 0.9;
-    background: rgba(36, 44, 71, 0.85);
-  }
-  .prevButton {
-    left: 4px;
-  }
-  .nextButton {
-    right: 4px;
   }
 }

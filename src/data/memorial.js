@@ -1,8 +1,7 @@
 export const memorial = {
-  portrait: '/assets/Prof. Rajaguru.jpg',
-  // 4 photos for hero slideshow (each displaying for 3 seconds)
+  portrait: '/assets/Rajuguru_2.jpg',
+  // 3 photos for hero slideshow (each displaying for 3 seconds)
   heroPhotos: [
-    '/assets/Prof. Rajaguru.jpg',
     '/assets/Rajuguru_2.jpg',
     '/assets/Rajuguru_3.jpeg',
     '/assets/Rajuguru_4.jpeg',
