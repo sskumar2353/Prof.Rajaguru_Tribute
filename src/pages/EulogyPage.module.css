@@ -1,11 +1,14 @@
 .page {
   min-height: 100vh;
   background: #f7f4ed;
+  width: 100%;
+  max-width: 100%;
+  box-sizing: border-box;
 }
 
 .hero {
   position: relative;
-  min-height: 380px;
+  min-height: 360px;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -14,6 +17,8 @@
     radial-gradient(circle at 50% 20%, rgba(255, 253, 248, 0.85), transparent 65%),
     linear-gradient(135deg, #cbd4ca 0%, #d8ded5 40%, #bfc9e5 100%);
   border-bottom: 1px solid rgba(48, 58, 93, 0.08);
+  width: 100%;
+  box-sizing: border-box;
 }
 
 .overlay {
@@ -31,15 +36,17 @@
   position: relative;
   z-index: 2;
   max-width: 800px;
-  padding: 60px 24px;
+  width: 100%;
+  padding: 56px 20px;
   text-align: center;
   color: #303a5d;
+  box-sizing: border-box;
 }
 
 .label,
 .sectionLabel {
   display: block;
-  margin-bottom: 16px;
+  margin-bottom: 14px;
   font-family: 'DM Sans', Arial, sans-serif;
   font-size: 0.75rem;
   font-weight: 600;
@@ -51,48 +58,53 @@
 .heroContent h1 {
   margin: 0;
   font-family: Georgia, 'Times New Roman', serif;
-  font-size: clamp(2.4rem, 5.5vw, 4.2rem);
+  font-size: clamp(2rem, 5vw, 3.8rem);
   font-weight: 500;
-  line-height: 1.15;
+  line-height: 1.18;
   color: #303a5d;
 }
 
 .heroContent p {
   max-width: 650px;
-  margin: 20px auto 0;
+  margin: 18px auto 0;
   font-family: 'DM Sans', Arial, sans-serif;
   font-size: 1.05rem;
-  line-height: 1.8;
+  line-height: 1.75;
   color: #74736e;
 }
 
 .content {
-  padding: 80px 24px 110px;
+  padding: 60px 20px 100px;
   background: #f7f4ed;
+  width: 100%;
+  box-sizing: border-box;
 }
 
 .inner {
   width: min(820px, 100%);
+  max-width: 100%;
   margin: 0 auto;
   text-align: center;
   background: #fffdf8;
-  padding: 60px 50px;
+  padding: 54px 44px;
   border: 1px solid rgba(48, 58, 93, 0.08);
   box-shadow: 0 16px 40px rgba(48, 58, 93, 0.05);
+  box-sizing: border-box;
+  border-radius: 4px;
 }
 
 .inner h2 {
   margin: 0;
   color: #303a5d;
   font-family: Georgia, 'Times New Roman', serif;
-  font-size: clamp(1.9rem, 3.8vw, 3rem);
+  font-size: clamp(1.75rem, 3.5vw, 2.6rem);
   font-weight: 500;
 }
 
 .divider {
   width: 50px;
   height: 2px;
-  margin: 24px auto 44px;
+  margin: 22px auto 38px;
   background: #b08c43;
 }
 
@@ -100,12 +112,14 @@
   text-align: left;
   color: #28272b;
   font-family: Georgia, 'Times New Roman', serif;
-  font-size: 1.12rem;
-  line-height: 2.05;
+  font-size: 1.1rem;
+  line-height: 2;
+  overflow-wrap: break-word;
+  word-break: break-word;
 }
 
 .eulogy p {
-  margin: 0 0 28px;
+  margin: 0 0 24px;
 }
 
 .eulogy strong {
@@ -114,29 +128,37 @@
 }
 
 .closing {
-  margin-top: 48px !important;
+  margin-top: 40px !important;
   text-align: center;
   color: #6675b5;
-  font-size: 1.25rem;
+  font-size: 1.15rem;
   font-style: italic;
-  line-height: 2;
+  line-height: 1.9;
 }
 
-@media (max-width: 760px) {
+@media (max-width: 768px) {
   .hero {
-    min-height: 320px;
+    min-height: 290px;
   }
 
-  .inner {
-    padding: 38px 22px;
+  .heroContent {
+    padding: 38px 16px;
   }
 
   .content {
-    padding: 40px 16px 70px;
+    padding: 30px 14px 60px;
+  }
+
+  .inner {
+    padding: 32px 18px;
   }
 
   .eulogy {
-    font-size: 1.02rem;
-    line-height: 1.85;
+    font-size: 1rem;
+    line-height: 1.8;
+  }
+
+  .eulogy p {
+    margin-bottom: 20px;
   }
 }

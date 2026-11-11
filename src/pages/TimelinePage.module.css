@@ -1,12 +1,17 @@
 .section {
-  padding: 78px 24px 120px;
+  padding: 60px 20px 100px;
   background: #f7f4ed;
+  width: 100%;
+  max-width: 100%;
+  box-sizing: border-box;
 }
 
 .intro {
   width: min(650px, 100%);
-  margin: 0 auto 78px;
+  max-width: 100%;
+  margin: 0 auto 60px;
   text-align: center;
+  box-sizing: border-box;
 }
 
 .eyebrow {

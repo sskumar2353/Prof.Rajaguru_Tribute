@@ -1,23 +1,32 @@
 .page {
   min-height: 100vh;
   background: #f7f4ed;
+  width: 100%;
+  max-width: 100%;
+  box-sizing: border-box;
 }
 
 .section {
-  padding: 60px 24px 110px;
+  padding: 50px 20px 100px;
+  width: 100%;
+  max-width: 100%;
+  box-sizing: border-box;
 }
 
 .container {
   width: min(1150px, 100%);
+  max-width: 100%;
   margin: 0 auto;
+  box-sizing: border-box;
 }
 
 .topBar {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  gap: 20px;
-  margin-bottom: 32px;
+  gap: 16px;
+  margin-bottom: 30px;
+  flex-wrap: wrap;
 }
 
 .backButton {
@@ -43,18 +52,21 @@
 .grid {
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: 24px;
+  gap: 22px;
+  width: 100%;
+  box-sizing: border-box;
 }
 
 .status,
 .empty,
 .error {
-  padding: 60px 30px;
+  padding: 50px 24px;
   text-align: center;
   border: 1px solid rgba(48, 58, 93, 0.1);
   border-radius: 6px;
   background: #fffdf8;
   color: #74736e;
+  box-sizing: border-box;
 }
 
 .empty {
@@ -64,7 +76,7 @@
 }
 
 .empty svg {
-  margin-bottom: 16px;
+  margin-bottom: 14px;
   color: #6675b5;
 }
 
@@ -72,7 +84,7 @@
   margin: 0 0 8px;
   color: #303a5d;
   font-family: Georgia, 'Times New Roman', serif;
-  font-size: 1.5rem;
+  font-size: 1.45rem;
   font-weight: 400;
 }
 
@@ -86,16 +98,13 @@
   border-color: #f0dada;
 }
 
-@media (max-width: 760px) {
+@media (max-width: 768px) {
   .section {
-    padding: 45px 18px 70px;
-  }
-
-  .topBar {
-    align-items: flex-start;
+    padding: 30px 14px 60px;
   }
 
   .grid {
     grid-template-columns: 1fr;
+    gap: 18px;
   }
 }

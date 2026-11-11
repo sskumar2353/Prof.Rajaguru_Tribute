@@ -1,11 +1,16 @@
 .section {
-  padding: 70px 24px 110px;
+  padding: 60px 20px 100px;
   background: #f7f4ed;
+  width: 100%;
+  max-width: 100%;
+  box-sizing: border-box;
 }
 
 .container {
   width: min(1180px, 100%);
+  max-width: 100%;
   margin: 0 auto;
+  box-sizing: border-box;
 }
 
 .headingRow {
@@ -416,15 +421,18 @@
 
 @media (max-width: 600px) {
   .section {
-    padding: 50px 16px 80px;
+    padding: 36px 14px 60px;
   }
   .headingRow {
     flex-direction: column;
     align-items: flex-start;
+    gap: 14px;
+    margin-bottom: 24px;
   }
   .grid {
     grid-template-columns: 1fr;
-    grid-auto-rows: 260px;
+    grid-auto-rows: 240px;
+    gap: 14px;
   }
   .card.featured,
   .card.wide {

@@ -1,35 +1,53 @@
 .nav {
-  background: rgba(48, 58, 93, 0.97);
+  background: #303a5d;
   position: sticky;
   top: 0;
-  z-index: 15;
-  box-shadow: 0 7px 24px rgba(48, 58, 93, 0.12);
+  left: 0;
+  right: 0;
+  width: 100%;
+  max-width: 100%;
+  box-sizing: border-box;
+  z-index: 45;
+  box-shadow: 0 4px 20px rgba(30, 37, 60, 0.16);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
 }
+
 .inner {
   max-width: 1120px;
-  min-height: 58px;
+  width: 100%;
+  min-height: 54px;
   margin: 0 auto;
   display: flex;
   justify-content: center;
   align-items: stretch;
   overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
   scrollbar-width: none;
+  box-sizing: border-box;
 }
-.inner::-webkit-scrollbar { display: none; }
-.link, .active {
+
+.inner::-webkit-scrollbar {
+  display: none;
+}
+
+.link,
+.active {
   position: relative;
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  color: #f9f7f0;
+  color: #f1ede4;
   text-decoration: none;
-  font: 600 14px/1 'DM Sans', Arial, sans-serif;
-  letter-spacing: 0.04em;
-  padding: 0 25px;
+  font: 600 14px/1 'DM Sans', -apple-system, BlinkMacSystemFont, Arial, sans-serif;
+  letter-spacing: 0.03em;
+  padding: 0 22px;
   white-space: nowrap;
-  transition: color .25s ease;
+  flex-shrink: 0;
+  transition: color 0.2s ease;
 }
-.link::after, .active::after {
+
+.link::after,
+.active::after {
   content: '';
   position: absolute;
   left: 50%;
@@ -38,11 +56,48 @@
   width: 0;
   background: #cbb77a;
   transform: translateX(-50%);
-  transition: width .25s ease;
+  transition: width 0.25s ease;
+  border-radius: 2px 2px 0 0;
 }
-.link:hover, .active { color: #fff; }
-.link:hover::after, .active::after { width: 54px; }
-@media (max-width: 760px) {
-  .inner { justify-content: flex-start; }
-  .link, .active { min-height: 54px; padding: 0 17px; font-size: 13px; }
+
+.link:hover,
+.active {
+  color: #ffffff;
+}
+
+.link:hover::after,
+.active::after {
+  width: 48px;
+}
+
+.active {
+  color: #ffffff;
+}
+
+@media (max-width: 768px) {
+  .inner {
+    justify-content: flex-start;
+    padding: 0 6px;
+    min-height: 48px;
+  }
+
+  .link,
+  .active {
+    min-height: 48px;
+    padding: 0 14px;
+    font-size: 13px;
+  }
+
+  .link:hover::after,
+  .active::after {
+    width: 36px;
+  }
+}
+
+@media (max-width: 380px) {
+  .link,
+  .active {
+    padding: 0 10px;
+    font-size: 12px;
+  }
 }

@@ -2,21 +2,26 @@
   position: relative;
   background: #fffdf8;
   border: 1px solid rgba(48, 58, 93, 0.1);
-  border-radius: 4px;
-  padding: 36px 30px 26px;
-  box-shadow: 0 12px 34px rgba(48, 58, 93, 0.05);
-  min-height: 190px;
+  border-radius: 6px;
+  padding: 34px 26px 24px;
+  box-shadow: 0 10px 30px rgba(48, 58, 93, 0.05);
+  min-height: 180px;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
+  width: 100%;
+  max-width: 100%;
+  box-sizing: border-box;
+  overflow-wrap: break-word;
+  word-break: break-word;
 }
 
 .icon {
   position: absolute;
-  top: -17px;
-  left: 28px;
-  width: 34px;
-  height: 34px;
+  top: -16px;
+  left: 24px;
+  width: 32px;
+  height: 32px;
   border-radius: 50%;
   background: #303a5d;
   color: #cbb77a;
@@ -26,10 +31,12 @@
 }
 
 .message {
-  font: italic 18px/1.7 Georgia, serif;
+  font: italic 17px/1.65 Georgia, serif;
   color: #28272b;
-  margin: 6px 0 24px;
+  margin: 6px 0 20px;
   white-space: pre-line;
+  overflow-wrap: break-word;
+  word-break: break-word;
 }
 
 .meta {
@@ -37,9 +44,10 @@
   align-items: baseline;
   justify-content: space-between;
   border-top: 1px solid rgba(48, 58, 93, 0.08);
-  padding-top: 16px;
+  padding-top: 14px;
   font-family: 'DM Sans', Arial, sans-serif;
-  gap: 16px;
+  gap: 14px;
+  flex-wrap: wrap;
 }
 
 .name {
@@ -54,4 +62,24 @@
   color: #74736e;
   text-align: right;
   margin-left: auto;
+}
+
+@media (max-width: 600px) {
+  .card {
+    padding: 28px 18px 20px;
+  }
+
+  .message {
+    font-size: 15.5px;
+    line-height: 1.6;
+    margin: 4px 0 16px;
+  }
+
+  .name {
+    font-size: 13.5px;
+  }
+
+  .place {
+    font-size: 12.5px;
+  }
 }

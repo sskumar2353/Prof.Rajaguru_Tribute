@@ -149,3 +149,14 @@
   .prev { left: 10px; }
   .next { right: 10px; }
 }
+
+@media (max-width: 520px) {
+  .grid {
+    grid-template-columns: 1fr;
+    gap: 12px;
+  }
+  .featured {
+    grid-column: span 1;
+    min-height: 240px;
+  }
+}
