@@ -1,36 +1,323 @@
 .hero {
-  min-height: 540px;
+  min-height: 580px;
   position: relative;
   overflow: hidden;
   display: grid;
   place-items: center;
-  background: #dfe4d9;
+  background: #f4f0e6;
 }
-.backdrop {
+
+/* ---------------------------------
+   ANIMATED TRIBUTE BACKGROUND
+---------------------------------- */
+.canvasBackground {
   position: absolute;
   inset: 0;
   background:
-    radial-gradient(circle at 18% 20%, rgba(255,255,255,.9), transparent 28%),
-    linear-gradient(135deg, #d7ded3 0%, #dfe4d9 45%, #c5cee7 100%);
-  transform: scale(1.02);
+    radial-gradient(ellipse at 20% 25%, rgba(255, 255, 255, 0.85) 0%, transparent 45%),
+    radial-gradient(ellipse at 80% 75%, rgba(203, 183, 122, 0.16) 0%, transparent 50%),
+    linear-gradient(135deg, #efebe0 0%, #e8edf7 45%, #f6f3eb 100%);
+  background-size: 200% 200%;
+  animation: canvasShift 16s ease-in-out infinite alternate;
 }
-.glow {
+
+@keyframes canvasShift {
+  0% {
+    background-position: 0% 0%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 100%;
+  }
+}
+
+.radialAura {
   position: absolute;
-  width: 430px;
-  height: 430px;
-  right: 6%;
-  top: 8%;
-  background: radial-gradient(circle, rgba(255,255,255,.72), transparent 68%);
-  filter: blur(18px);
+  top: 50%;
+  left: 50%;
+  width: 650px;
+  height: 650px;
+  transform: translate(-50%, -50%);
+  background: radial-gradient(
+    circle,
+    rgba(203, 183, 122, 0.22) 0%,
+    rgba(102, 117, 181, 0.12) 40%,
+    transparent 70%
+  );
+  filter: blur(40px);
+  animation: auraBreathe 8s ease-in-out infinite alternate;
+  pointer-events: none;
 }
-.content { position: relative; z-index: 3; text-align: center; color: #303a5d; padding: 42px 20px; }
-.eyebrow { font: italic 600 29px/1.2 Georgia, serif; margin: 0 0 20px; }
-.portraitFrame { width: 250px; height: 285px; margin: auto; border: 5px solid #fffdf8; background: #ddd; box-shadow: 0 18px 45px rgba(48,58,93,.16); overflow: hidden; }
-.portraitFrame img { width: 100%; height: 100%; object-fit: cover; }
-.content h1 { font: 600 37px/1.1 Georgia, serif; margin: 20px 0 8px; }
-.subtitle { font: italic 500 25px/1.25 Georgia, serif; margin: 0; color: #5868a7; }
-.dates { display: inline-block; margin-top: 12px; font: 500 12px/1 'DM Sans', sans-serif; letter-spacing: .18em; text-transform: uppercase; color: #687064; }
-.petals span { position: absolute; z-index: 2; width: 15px; height: 8px; border-radius: 100% 0 100% 0; background: rgba(102,117,181,.28); left: calc((var(--i) + 1) * 7.5%); top: calc(6% + (var(--i) * 7%)); animation: float 9s ease-in-out infinite; animation-delay: calc(var(--i) * -.65s); transform: rotate(calc(var(--i) * 32deg)); }
-.petals span:nth-child(even) { width: 11px; height: 14px; background: rgba(176,140,67,.18); }
-@keyframes float { 0%,100%{translate:0 0;opacity:.25} 50%{translate:38px 44px;opacity:.8} }
-@media(max-width:760px){.hero{min-height:500px}.eyebrow{font-size:23px}.portraitFrame{width:190px;height:220px}.content h1{font-size:30px}.subtitle{font-size:20px}}
+
+@keyframes auraBreathe {
+  0% {
+    transform: translate(-50%, -50%) scale(0.9);
+    opacity: 0.65;
+  }
+  100% {
+    transform: translate(-50%, -50%) scale(1.18);
+    opacity: 0.95;
+  }
+}
+
+.ambientGlow {
+  position: absolute;
+  top: 10%;
+  right: 12%;
+  width: 380px;
+  height: 380px;
+  background: radial-gradient(
+    circle,
+    rgba(255, 255, 255, 0.75) 0%,
+    rgba(203, 183, 122, 0.18) 50%,
+    transparent 70%
+  );
+  filter: blur(30px);
+  animation: ambientFloat 12s ease-in-out infinite alternate;
+  pointer-events: none;
+}
+
+@keyframes ambientFloat {
+  0% {
+    transform: translate(0, 0);
+  }
+  100% {
+    transform: translate(-35px, 30px);
+  }
+}
+
+/* Floating Memorial Golden Motes */
+.motesContainer {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  overflow: hidden;
+  z-index: 2;
+}
+
+.mote {
+  position: absolute;
+  bottom: -20px;
+  left: calc((var(--m) * 5.6%) + 2%);
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(203, 183, 122, 0.9) 0%, rgba(203, 183, 122, 0) 75%);
+  box-shadow: 0 0 10px rgba(203, 183, 122, 0.6);
+  opacity: 0;
+  animation: riseUp 11s cubic-bezier(0.25, 0.46, 0.45, 0.94) infinite;
+  animation-delay: calc(var(--m) * -0.65s);
+}
+
+.mote:nth-child(even) {
+  width: 8px;
+  height: 8px;
+  background: radial-gradient(circle, rgba(255, 253, 248, 0.95) 0%, rgba(102, 117, 181, 0) 75%);
+  box-shadow: 0 0 12px rgba(255, 255, 255, 0.75);
+  animation-duration: 14s;
+}
+
+.mote:nth-child(3n) {
+  width: 5px;
+  height: 5px;
+  background: radial-gradient(circle, rgba(176, 140, 67, 0.85) 0%, transparent 75%);
+  animation-duration: 9s;
+}
+
+@keyframes riseUp {
+  0% {
+    transform: translateY(0) translateX(0);
+    opacity: 0;
+  }
+  15% {
+    opacity: 0.8;
+  }
+  75% {
+    opacity: 0.7;
+  }
+  100% {
+    transform: translateY(-640px) translateX(calc(sin(var(--m)) * 45px));
+    opacity: 0;
+  }
+}
+
+/* ---------------------------------
+   CONTENT & TYPOGRAPHY
+---------------------------------- */
+.content {
+  position: relative;
+  z-index: 4;
+  text-align: center;
+  color: #303a5d;
+  padding: 48px 20px 42px;
+}
+
+.eyebrow {
+  font: italic 600 29px/1.2 Georgia, serif;
+  margin: 0 0 22px;
+  color: #303a5d;
+}
+
+/* ---------------------------------
+   7-PHOTO SLIDESHOW
+---------------------------------- */
+.slideshowContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 0 auto;
+}
+
+.portraitFrame {
+  position: relative;
+  width: 250px;
+  height: 295px;
+  margin: 0 auto;
+  border: 5px solid #fffdf8;
+  border-radius: 4px;
+  background: #e7e3d8;
+  box-shadow:
+    0 22px 50px rgba(48, 58, 93, 0.18),
+    0 0 0 1px rgba(203, 183, 122, 0.45);
+  overflow: hidden;
+}
+
+.slide {
+  position: absolute;
+  inset: 0;
+  opacity: 0;
+  transform: scale(1.03);
+  transition: opacity 0.85s cubic-bezier(0.4, 0, 0.2, 1), transform 0.85s cubic-bezier(0.4, 0, 0.2, 1);
+  pointer-events: none;
+}
+
+.activeSlide {
+  opacity: 1;
+  transform: scale(1);
+  z-index: 2;
+  pointer-events: auto;
+}
+
+.slide img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center 25%;
+  display: block;
+}
+
+/* Slideshow Arrow Buttons */
+.navButton {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 5;
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  background: rgba(48, 58, 93, 0.65);
+  backdrop-filter: blur(4px);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  color: #fffdf8;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  opacity: 0;
+  transition: opacity 0.25s ease, background 0.25s ease, transform 0.25s ease;
+}
+
+.portraitFrame:hover .navButton {
+  opacity: 1;
+}
+
+.prevButton {
+  left: 8px;
+}
+
+.nextButton {
+  right: 8px;
+}
+
+.navButton:hover {
+  background: rgba(48, 58, 93, 0.95);
+  color: #cbb77a;
+  transform: translateY(-50%) scale(1.08);
+}
+
+/* 7 Indicator Dots */
+.dots {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 7px;
+  margin-top: 14px;
+}
+
+.dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: rgba(48, 58, 93, 0.25);
+  border: none;
+  padding: 0;
+  cursor: pointer;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.dot:hover {
+  background: rgba(48, 58, 93, 0.55);
+}
+
+.activeDot {
+  width: 22px;
+  border-radius: 10px;
+  background: #cbb77a;
+  box-shadow: 0 2px 6px rgba(203, 183, 122, 0.45);
+}
+
+/* Details */
+.content h1 {
+  font: 600 37px/1.1 Georgia, serif;
+  margin: 18px 0 8px;
+  color: #303a5d;
+}
+
+.subtitle {
+  font: italic 500 25px/1.25 Georgia, serif;
+  margin: 0;
+  color: #5868a7;
+}
+
+.dates {
+  display: inline-block;
+  margin-top: 12px;
+  font: 500 12px/1 'DM Sans', sans-serif;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: #687064;
+}
+
+@media (max-width: 760px) {
+  .hero {
+    min-height: 520px;
+  }
+  .eyebrow {
+    font-size: 23px;
+  }
+  .portraitFrame {
+    width: 200px;
+    height: 236px;
+  }
+  .content h1 {
+    font-size: 30px;
+  }
+  .subtitle {
+    font-size: 20px;
+  }
+  .navButton {
+    opacity: 0.85; /* always visible on touch devices */
+  }
+}

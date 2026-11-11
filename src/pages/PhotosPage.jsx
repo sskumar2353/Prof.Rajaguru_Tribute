@@ -103,11 +103,6 @@ export default function PhotosPage() {
               <span className={styles.eyebrow}>In remembrance</span>
               <h2>Moments we cherish</h2>
             </div>
-            {validPhotos.length > 0 && (
-              <span className={styles.photoBadge}>
-                {validPhotos.length} Photographs
-              </span>
-            )}
           </div>
 
           {loading && (
@@ -176,14 +171,14 @@ export default function PhotosPage() {
                     onClick={loadMore}
                     className={styles.loadMoreButton}
                   >
-                    Load More Photographs ({validPhotos.length - visibleCount} remaining)
+                    Load More Photographs
                   </button>
                   <button
                     type="button"
                     onClick={showAll}
                     className={styles.showAllButton}
                   >
-                    Show All {validPhotos.length}
+                    Show All Photographs
                   </button>
                 </div>
               )}
@@ -238,12 +233,6 @@ export default function PhotosPage() {
                 alt={activePhoto.alt || 'Memorial photograph'}
                 className={styles.lightboxImage}
               />
-            </div>
-
-            <div className={styles.lightboxMeta}>
-              <span className={styles.lightboxCounter}>
-                {selectedIndex + 1} / {validPhotos.length}
-              </span>
             </div>
           </div>
         </div>

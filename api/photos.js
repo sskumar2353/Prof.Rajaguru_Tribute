@@ -98,7 +98,9 @@ export default async function handler(req, res) {
   try {
     const photos = await fetchAlbum(GOOGLE_PHOTOS_ALBUM_URL);
     res.setHeader('Cache-Control', 's-maxage=600, stale-while-revalidate=1800');
-    return res.status(200).json({ success: true, count: photos.length, photos });
+    // Reversed so newest added photos are returned first at the top
+    const reversed = [...photos].reverse();
+    return res.status(200).json({ success: true, count: reversed.length, photos: reversed });
   } catch (error) {
     return res.status(500).json({ success: false, error: error.message });
   }

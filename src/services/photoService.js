@@ -15,21 +15,22 @@ export async function getMemorialPhotos() {
     if (response.ok) {
       const data = await response.json();
       if (data?.photos && Array.isArray(data.photos) && data.photos.length > 0) {
-        return data.photos;
+        // Return reversed: latest/newest added photographs appear first at the top
+        return [...data.photos].reverse();
       }
     }
   } catch (err) {
     // Falls back seamlessly to pre-cached verified Google Photos
   }
 
-  // 2. Return pre-cached verified Google Photos (259 pure photos)
+  // 2. Return pre-cached verified Google Photos (reversed: latest photos first)
   if (Array.isArray(googlePhotos) && googlePhotos.length > 0) {
-    return googlePhotos;
+    return [...googlePhotos].reverse();
   }
 
   // 3. Fallback to memorial config photos
   const fallbackPhotos = Array.isArray(memorial.photos) ? memorial.photos : [];
-  return fallbackPhotos.map((photo, index) => ({
+  return [...fallbackPhotos].reverse().map((photo, index) => ({
     id: photo.id || `photo-${index}`,
     src: photo.src || photo.url,
     thumbnail: photo.thumbnail || photo.src || photo.url,

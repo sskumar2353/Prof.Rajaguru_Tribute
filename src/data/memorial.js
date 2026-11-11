@@ -2,6 +2,16 @@ import { googlePhotos } from './googlePhotos';
 
 export const memorial = {
   portrait: '/assets/Prof. Rajaguru.jpg',
+  // 7 photo containers for hero slideshow (user can swap individual photo paths anytime)
+  heroPhotos: [
+    '/assets/Prof. Rajaguru.jpg',
+    '/assets/Prof. Rajaguru.jpg',
+    '/assets/Prof. Rajaguru.jpg',
+    '/assets/Prof. Rajaguru.jpg',
+    '/assets/Prof. Rajaguru.jpg',
+    '/assets/Prof. Rajaguru.jpg',
+    '/assets/Prof. Rajaguru.jpg',
+  ],
   name: 'Prof. Rajaguru',
   dates: '08/10/1945 - 15/11/2025',
   heroTitle: 'In Loving Memory of',
@@ -55,7 +65,7 @@ export const memorial = {
     },
   ],
 
-  photos: Array.isArray(googlePhotos) && googlePhotos.length > 0 ? googlePhotos : [
+  photos: Array.isArray(googlePhotos) && googlePhotos.length > 0 ? [...googlePhotos].reverse() : [
     {
       id: 'photo-1',
       src: '/assets/memorial-portrait.svg',
