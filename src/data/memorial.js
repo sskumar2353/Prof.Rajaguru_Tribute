@@ -1,5 +1,3 @@
-import { googlePhotos } from './googlePhotos';
-
 export const memorial = {
   portrait: '/assets/Prof. Rajaguru.jpg',
   // 7 photo containers for hero slideshow (user can swap individual photo paths anytime)
@@ -65,13 +63,41 @@ export const memorial = {
     },
   ],
 
-  photos: Array.isArray(googlePhotos) && googlePhotos.length > 0 ? [...googlePhotos].reverse() : [
+  photos: [
     {
-      id: 'photo-1',
-      src: '/assets/memorial-portrait.svg',
-      alt: 'Prof. Rajaguru',
-      caption: 'A cherished smile',
-      title: 'Prof. Rajaguru',
+      id: 'memory-1',
+      src: '/assets/memory_1.jpg',
+      alt: 'Prof. Rajaguru with family',
+      caption: 'A cherished conversation',
+      title: 'Cherished Conversation',
+    },
+    {
+      id: 'memory-2',
+      src: '/assets/memory_2.jpg',
+      alt: 'Moments of peace',
+      caption: 'Among the moments we cherish',
+      title: 'Treasured Moments',
+    },
+    {
+      id: 'memory-3',
+      src: '/assets/memory_3.webp',
+      alt: 'Prof. Rajaguru with visitors and family',
+      caption: 'Surrounded by loved ones',
+      title: 'Family & Fellowship',
+    },
+    {
+      id: 'memory-4',
+      src: '/assets/memory_4.webp',
+      alt: 'Memories of fellowship',
+      caption: 'A blessed remembrance',
+      title: 'Fellowship & Joy',
+    },
+    {
+      id: 'memory-5',
+      src: '/assets/memory_5.webp',
+      alt: 'Peaceful moments',
+      caption: 'Peaceful moments and reflection',
+      title: 'Peaceful Reflections',
     },
   ],
 };
