@@ -44,10 +44,9 @@ export default function TributeForm({ onCreated }) {
   }
 
   return (
-    <form id="post" className={styles.form} onSubmit={submit}>
+    <form id="leave-tribute" className={styles.form} onSubmit={submit}>
       <div className={styles.header}>
         <div>
-          <span>Leave a Memory</span>
           <h3>Share your tribute</h3>
         </div>
         <Send className={styles.headerIcon} size={22} />
@@ -61,7 +60,6 @@ export default function TributeForm({ onCreated }) {
             value={form.name}
             onChange={update}
             maxLength={100}
-            placeholder="e.g. Bro. David or Dr. Grace"
             required
           />
         </label>
@@ -73,7 +71,6 @@ export default function TributeForm({ onCreated }) {
             value={form.place}
             onChange={update}
             maxLength={100}
-            placeholder="e.g. Chennai, Madurai, or Hyderabad"
           />
         </label>
 
@@ -96,7 +93,6 @@ export default function TributeForm({ onCreated }) {
             onChange={update}
             maxLength={1000}
             rows={5}
-            placeholder="Share a memory, message of gratitude, or a prayer..."
             required
           />
         </label>
@@ -110,7 +106,7 @@ export default function TributeForm({ onCreated }) {
       )}
 
       <button type="submit" className={styles.button} disabled={state.loading}>
-        {state.loading ? 'Publishing…' : 'Publish Tribute'} <Send size={15} />
+        {state.loading ? 'Sharing…' : 'Share'} <Send size={15} />
       </button>
 
       <p className={styles.note}>

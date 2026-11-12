@@ -23,7 +23,7 @@ export default function HomePage() {
           </div>
 
           <div className={styles.cards}>
-            <Link to="/tributes#post" className={styles.card}>
+            <Link to="/tributes#leave-tribute" className={styles.card}>
               <Heart />
               <span>
                 <strong>Share a Tribute</strong>
@@ -62,7 +62,7 @@ export default function HomePage() {
             <h2>Share a memory from the heart</h2>
             <p>Your words can become part of this lasting memorial.</p>
           </div>
-          <Link to="/tributes#post" className={styles.tributeCtaButton}>
+          <Link to="/tributes#leave-tribute" className={styles.tributeCtaButton}>
             <PenLine size={17} />
             Leave a Tribute
             <ArrowRight size={16} />

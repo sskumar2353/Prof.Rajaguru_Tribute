@@ -25,7 +25,7 @@
   align-items: flex-end;
   justify-content: space-between;
   gap: 20px;
-  margin: 70px 0 32px;
+  margin: 10px 0 36px;
 }
 
 .label {
@@ -62,7 +62,7 @@
 .grid {
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: 22px;
+  gap: 24px;
   width: 100%;
   box-sizing: border-box;
 }
@@ -108,30 +108,88 @@
   border-color: #f0dada;
 }
 
-.archiveAction {
+/* ---------------------------------
+   PAGINATION CONTROLS
+---------------------------------- */
+.pagination {
   display: flex;
+  align-items: center;
   justify-content: center;
-  margin-top: 44px;
+  gap: 8px;
+  margin-top: 48px;
+  flex-wrap: wrap;
 }
 
-.archiveButton {
+.pageBtn {
   display: inline-flex;
   align-items: center;
-  gap: 8px;
-  padding: 12px 26px;
-  border: 1px solid #303a5d;
+  gap: 6px;
+  padding: 9px 16px;
+  border: 1px solid rgba(48, 58, 93, 0.18);
   border-radius: 4px;
-  color: #303a5d;
   background: #fffdf8;
-  text-decoration: none;
-  font: 600 13px 'DM Sans', Arial, sans-serif;
-  letter-spacing: 0.03em;
+  color: #303a5d;
+  font-size: 0.84rem;
+  font-weight: 600;
+  cursor: pointer;
   transition: all 0.2s ease;
+  font-family: 'DM Sans', -apple-system, sans-serif;
 }
 
-.archiveButton:hover {
-  color: #fffdf8;
+.pageBtn:hover:not(:disabled) {
   background: #303a5d;
+  color: #fffdf8;
+  border-color: #303a5d;
+}
+
+.pageBtn:disabled {
+  opacity: 0.45;
+  cursor: not-allowed;
+}
+
+.pageNumbers {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.pageNumBtn {
+  min-width: 38px;
+  height: 38px;
+  padding: 0 8px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid rgba(48, 58, 93, 0.16);
+  border-radius: 4px;
+  background: #fffdf8;
+  color: #303a5d;
+  font-size: 0.88rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  font-family: 'DM Sans', -apple-system, sans-serif;
+}
+
+.pageNumBtn:hover:not(.activePage) {
+  background: rgba(48, 58, 93, 0.08);
+  border-color: #303a5d;
+}
+
+.activePage {
+  background: #303a5d;
+  color: #fffdf8;
+  border-color: #303a5d;
+  font-weight: 700;
+}
+
+/* ---------------------------------
+   TRIBUTE FORM SECTION (BELOW)
+---------------------------------- */
+.formSection {
+  margin-top: 72px;
+  padding-top: 48px;
+  border-top: 1px solid rgba(48, 58, 93, 0.12);
 }
 
 @media (max-width: 768px) {
@@ -140,7 +198,7 @@
   }
 
   .wallHeader {
-    margin: 48px 0 24px;
+    margin: 10px 0 24px;
     align-items: flex-start;
   }
 
@@ -151,5 +209,26 @@
   .grid {
     grid-template-columns: 1fr;
     gap: 18px;
+  }
+
+  .formSection {
+    margin-top: 54px;
+    padding-top: 36px;
+  }
+
+  .pagination {
+    margin-top: 36px;
+    gap: 6px;
+  }
+
+  .pageBtn {
+    padding: 8px 12px;
+    font-size: 0.8rem;
+  }
+
+  .pageNumBtn {
+    min-width: 34px;
+    height: 34px;
+    font-size: 0.82rem;
   }
 }

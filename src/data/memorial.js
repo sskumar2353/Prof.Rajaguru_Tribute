@@ -31,43 +31,33 @@ export const memorial = {
   timeline: [
     {
       year: '1945',
-      title: 'A New Beginning',
-      text: 'Prof. Rajaguru was born in 1945, beginning a life that would become meaningful to family, friends, students, and everyone around him.',
+      title: 'A Blessed Beginning',
+      text: 'Prof. Y. Rajaguru was born in 1945 to Mr. Yesadian and Mrs. Mary in Kusavan Gundu near Madurai, the sixth of seven children.',
     },
     {
-      year: '1960s',
-      title: 'Growing Through Education',
-      text: 'His early years were shaped by education, curiosity, discipline, and a growing desire to learn and contribute to the people around him.',
+      year: '1966',
+      title: 'Education, Ministry & Presidency College',
+      text: 'After completing his B.Sc, he moved to Madras, working at Guindy Engineering College and completing post-graduation at Madras Christian College (MCC). God used him to touch many students’ lives, sow the first seeds of Fellowship ministry in Imphal, and begin over three decades of service at Presidency College, Chennai.',
     },
     {
-      year: '1970s',
-      title: 'Beginning His Professional Journey',
-      text: 'He began building his professional life, developing a reputation for dedication, patience, and a thoughtful approach to his work.',
-    },
-    {
-      year: '1980s',
-      title: 'A Life of Teaching and Service',
-      text: 'During this chapter of his life, he continued to guide and encourage others, leaving a lasting impression through his knowledge and personal example.',
+      year: '1979',
+      title: 'Parry’s Corner & Miraculous Healing',
+      text: 'In the year 1979, dad was hit by a bull and fell on the busy road in Parry’s corner. His right forearm broke... it was hanging like a broken drumstick. I screamed, but he kept so cool and said, "Nothing will happen ma. The Lord will help us!" Sure enough, the Lord helped to have good surgery by Dr. TKS under the guidance of Dr. Jayasingh, and he was healed completely. Even his beautiful handwriting did not change.',
     },
     {
       year: '1990s',
-      title: 'Mentoring the Next Generation',
-      text: 'His influence extended beyond his immediate work as he encouraged younger people to pursue learning, responsibility, and a life of purpose.',
+      title: 'God’s Providence & A True Friend',
+      text: 'When ADMK came to power, the C.M. Ms. Jayalalithaa transferred all the Christian staff to distant places. Dad was transferred to Thiruvannamalai. But the Lord helped him through his friend and colleague Prof. Sounderaj Chelliah, who volunteered for a mutual transfer, and Dad was transferred to Ponneri. And in a few years’ time, he got back to the same Presidency College without any difficulty.',
     },
     {
-      year: '2000s',
-      title: 'Family, Friendship and Memories',
-      text: 'These years were filled with family occasions, friendships, shared conversations, celebrations, and many memories that continue to be cherished.',
-    },
-    {
-      year: '2010s',
-      title: 'Wisdom Shared With Others',
-      text: 'His later years reflected the wisdom and experiences gathered across a lifetime, with his kindness and guidance continuing to touch those around him.',
+      year: '2022',
+      title: 'Overcoming MG by the Lord’s Grace',
+      text: 'Three years back he became very weak and almost collapsed in the car while we were taking him to Apollo. He was suffering from MG (Myasthenia Gravis)... but the Lord helped him to recover fully.',
     },
     {
       year: '2025',
-      title: 'A Life Remembered',
-      text: 'Prof. Rajaguru passed away on 15 November 2025. The memories, lessons, kindness, and love he shared continue through everyone whose life he touched.',
+      title: 'A Life of Faith Remembered',
+      text: 'Prof. Rajaguru passed away on 15 November 2025. He leaves behind an enduring legacy of faith, humility, prayer, and simple obedience that continues to bear fruit in the lives of his family, students, and all who knew him.',
     },
   ],
 

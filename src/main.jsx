@@ -20,7 +20,7 @@ ReactDOM.createRoot(document.getElementById('root')).render(
         <Route element={<MemorialLayout />}>
           <Route path="/" element={<HomePage />} />
           <Route path="/tributes" element={<TributesPage />} />
-          <Route path="/tributes/all" element={<AllTributesPage />} />
+          <Route path="/tributes/all" element={<Navigate to="/tributes" replace />} />
           <Route path="/photos" element={<PhotosPage />} />
           <Route path="/eulogy" element={<EulogyPage />} />
           <Route path="/videos" element={<VideosPage />} />

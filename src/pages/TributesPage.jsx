@@ -1,16 +1,20 @@
 import { useEffect, useState } from 'react';
-import { ArrowRight, Heart } from 'lucide-react';
-import { Link } from 'react-router-dom';
+import { Heart, ChevronLeft, ChevronRight } from 'lucide-react';
+import { useLocation } from 'react-router-dom';
 import { getTributes } from '../services/tributeService';
 import TributeCard from '../components/tribute/TributeCard';
 import TributeForm from '../components/tribute/TributeForm';
 import PageIntro from '../components/common/PageIntro';
 import styles from './TributesPage.module.css';
 
+const ITEMS_PER_PAGE = 6;
+
 export default function TributesPage() {
   const [tributes, setTributes] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState('');
+  const [currentPage, setCurrentPage] = useState(1);
+  const location = useLocation();
 
   useEffect(() => {
     let active = true;
@@ -39,11 +43,39 @@ export default function TributesPage() {
     };
   }, []);
 
+  // Handle direct navigation to tribute form via URL hash
+  useEffect(() => {
+    if (
+      location.hash === '#leave-tribute' ||
+      location.hash === '#post' ||
+      location.hash === '#tribute-form'
+    ) {
+      const el = document.getElementById('leave-tribute');
+      if (el) {
+        setTimeout(() => {
+          el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }, 200);
+      }
+    }
+  }, [location.hash]);
+
   function handleCreated(tribute) {
     setTributes((current) => [tribute, ...current]);
+    setCurrentPage(1);
   }
 
-  const recentTributes = tributes.slice(0, 8);
+  const totalPages = Math.ceil(tributes.length / ITEMS_PER_PAGE) || 1;
+  const startIndex = (currentPage - 1) * ITEMS_PER_PAGE;
+  const currentTributes = tributes.slice(startIndex, startIndex + ITEMS_PER_PAGE);
+
+  function handlePageChange(newPage) {
+    if (newPage < 1 || newPage > totalPages) return;
+    setCurrentPage(newPage);
+    const wall = document.getElementById('tributes-wall');
+    if (wall) {
+      wall.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }
+  }
 
   return (
     <main className={styles.page}>
@@ -55,11 +87,10 @@ export default function TributesPage() {
 
       <section className={styles.section}>
         <div className={styles.container}>
-          <TributeForm onCreated={handleCreated} />
-
-          <div className={styles.wallHeader}>
+          {/* Tributes Wall Header */}
+          <div id="tributes-wall" className={styles.wallHeader}>
             <div>
-              <span className={styles.label}>Recent Memories</span>
+              <span className={styles.label}>Memories of Prof. Rajaguru</span>
               <h2>Messages from loved ones</h2>
             </div>
             <div className={styles.icon} aria-hidden="true">
@@ -71,31 +102,70 @@ export default function TributesPage() {
 
           {error && <div className={styles.error}>{error}</div>}
 
-          {!loading && !error && recentTributes.length === 0 && (
+          {!loading && !error && tributes.length === 0 && (
             <div className={styles.empty}>
               <Heart size={32} />
               <h3>No tributes yet</h3>
-              <p>Be the first person to share a memory.</p>
+              <p>Be the first person to share a memory below.</p>
             </div>
           )}
 
-          {!loading && !error && recentTributes.length > 0 && (
+          {/* 6 Tributes Per Page */}
+          {!loading && !error && currentTributes.length > 0 && (
             <>
               <div className={styles.grid}>
-                {recentTributes.map((tribute) => (
+                {currentTributes.map((tribute) => (
                   <TributeCard key={tribute.id} tribute={tribute} />
                 ))}
               </div>
 
-              {tributes.length > 8 && (
-                <div className={styles.archiveAction}>
-                  <Link to="/tributes/all" className={styles.archiveButton}>
-                    View all tributes <ArrowRight size={17} />
-                  </Link>
-                </div>
+              {/* Page-by-Page Pagination Controls */}
+              {totalPages > 1 && (
+                <nav className={styles.pagination} aria-label="Tributes pagination">
+                  <button
+                    type="button"
+                    className={styles.pageBtn}
+                    disabled={currentPage === 1}
+                    onClick={() => handlePageChange(currentPage - 1)}
+                    aria-label="Previous tributes page"
+                  >
+                    <ChevronLeft size={16} /> Prev
+                  </button>
+
+                  <div className={styles.pageNumbers}>
+                    {Array.from({ length: totalPages }, (_, i) => i + 1).map((num) => (
+                      <button
+                        key={num}
+                        type="button"
+                        className={`${styles.pageNumBtn} ${
+                          num === currentPage ? styles.activePage : ''
+                        }`}
+                        onClick={() => handlePageChange(num)}
+                        aria-current={num === currentPage ? 'page' : undefined}
+                      >
+                        {num}
+                      </button>
+                    ))}
+                  </div>
+
+                  <button
+                    type="button"
+                    className={styles.pageBtn}
+                    disabled={currentPage === totalPages}
+                    onClick={() => handlePageChange(currentPage + 1)}
+                    aria-label="Next tributes page"
+                  >
+                    Next <ChevronRight size={16} />
+                  </button>
+                </nav>
               )}
             </>
           )}
+
+          {/* Tribute Submission Form — Placed Below the Tributes */}
+          <div id="leave-tribute" className={styles.formSection}>
+            <TributeForm onCreated={handleCreated} />
+          </div>
         </div>
       </section>
     </main>

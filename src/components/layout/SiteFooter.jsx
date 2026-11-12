@@ -15,7 +15,7 @@ export default function SiteFooter() {
           <Link to="/">Home</Link>
           <Link to="/tributes">Tributes</Link>
           <Link to="/eulogy">Eulogy</Link>
-          <Link to="/photos">Images</Link>
+          <Link to="/photos">Photos</Link>
           <Link to="/videos">Videos</Link>
           <Link to="/timeline">Timeline</Link>
         </nav>

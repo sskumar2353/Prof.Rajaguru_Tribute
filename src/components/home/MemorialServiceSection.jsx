@@ -92,7 +92,7 @@ export default function MemorialServiceSection() {
                     onClick={() => setIsLightboxOpen(true)}
                     className={styles.primaryBtn}
                   >
-                    <Maximize2 size={16} /> View Full Flyer
+                    <Maximize2 size={16} /> View
                   </button>
                   <a
                     href={service.mapUrl}
@@ -100,7 +100,7 @@ export default function MemorialServiceSection() {
                     rel="noreferrer"
                     className={styles.secondaryBtn}
                   >
-                    <ExternalLink size={16} /> Get Directions
+                    <ExternalLink size={16} /> Navigate
                   </a>
                 </div>
               </div>

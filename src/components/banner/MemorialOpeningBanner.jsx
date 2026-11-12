@@ -35,19 +35,21 @@ export default function MemorialOpeningBanner() {
             <span className={styles.separator} aria-hidden="true">•</span>
             <span className={styles.venueInfo}>
               <MapPin size={14} />
-              {service.hall}, Kilpauk
+              {service.hall}, {service.church}, Kilpauk
             </span>
           </span>
 
-          {/* Mobile compact details */}
-          <span className={styles.mobileText}>
-            <Calendar size={13} className={styles.calendarIcon} />
-            <span className={styles.mobileDateText}>
-              <strong>16th Nov</strong>, 6 PM
-            </span>
-            <span className={styles.mobileSeparator}>•</span>
-            <span className={styles.mobileVenue}>Kilpauk</span>
-          </span>
+          {/* Mobile continuous ticker with full address and details */}
+          <div className={styles.mobileTickerWrapper} onClick={scrollToSection}>
+            <div className={styles.mobileTickerTrack}>
+              <span className={styles.tickerItem}>
+                🕊️ <strong>Memorial Service:</strong> {service.date} at {service.time} • 📍 {service.hall}, {service.church}, Kilpauk, Chennai &nbsp;•&nbsp;&nbsp;
+              </span>
+              <span className={styles.tickerItem} aria-hidden="true">
+                🕊️ <strong>Memorial Service:</strong> {service.date} at {service.time} • 📍 {service.hall}, {service.church}, Kilpauk, Chennai &nbsp;•&nbsp;&nbsp;
+              </span>
+            </div>
+          </div>
         </div>
 
         <div className={styles.actions}>

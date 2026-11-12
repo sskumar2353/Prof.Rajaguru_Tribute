@@ -64,7 +64,7 @@
   white-space: nowrap;
 }
 
-.mobileText {
+.mobileTickerWrapper {
   display: none;
 }
 
@@ -163,16 +163,17 @@
 }
 
 /* ---------------------------------
-   MOBILE RESPONSIVENESS (<= 640px)
+   MOBILE CONTINUOUS TICKER (<= 640px)
 ---------------------------------- */
 @media (max-width: 640px) {
   .inner {
     padding: 7px 10px;
     gap: 8px;
     justify-content: space-between;
+    width: 100%;
+    box-sizing: border-box;
   }
 
-  /* Hide bulky pill so text & button fit seamlessly */
   .pill {
     display: none;
   }
@@ -181,38 +182,45 @@
     display: none;
   }
 
-  .mobileText {
+  .mobileTickerWrapper {
+    display: flex;
+    overflow: hidden;
+    position: relative;
+    flex: 1;
+    min-width: 0;
+    cursor: pointer;
+    mask-image: linear-gradient(to right, transparent 0%, black 10px, black calc(100% - 10px), transparent 100%);
+    -webkit-mask-image: linear-gradient(to right, transparent 0%, black 10px, black calc(100% - 10px), transparent 100%);
+  }
+
+  .mobileTickerTrack {
+    display: inline-flex;
+    white-space: nowrap;
+    animation: bannerTicker 24s linear infinite;
+  }
+
+  .mobileTickerTrack:hover,
+  .mobileTickerTrack:active {
+    animation-play-state: paused;
+  }
+
+  .tickerItem {
     display: inline-flex;
     align-items: center;
-    gap: 5px;
     font-size: 0.77rem;
     color: #e9ebf2;
     white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
+    padding-right: 18px;
   }
 
-  .calendarIcon {
-    color: #cbb77a;
-    flex-shrink: 0;
-  }
-
-  .mobileDateText strong {
+  .tickerItem strong {
     color: #fffdf8;
-  }
-
-  .mobileSeparator {
-    color: #cbb77a;
-    opacity: 0.7;
-    margin: 0 1px;
-  }
-
-  .mobileVenue {
-    color: #cbd3ea;
+    margin: 0 3px;
   }
 
   .actions {
     gap: 6px;
+    flex-shrink: 0;
   }
 
   .viewLink {
@@ -235,24 +243,11 @@
   }
 }
 
-/* Very narrow devices (<= 360px) */
-@media (max-width: 360px) {
-  .inner {
-    padding: 6px 8px;
-    gap: 6px;
+@keyframes bannerTicker {
+  0% {
+    transform: translateX(0);
   }
-
-  .mobileVenue,
-  .mobileSeparator {
-    display: none;
-  }
-
-  .mobileText {
-    font-size: 0.72rem;
-  }
-
-  .viewLink {
-    padding: 3px 8px;
-    font-size: 0.7rem;
+  100% {
+    transform: translateX(-50%);
   }
 }
