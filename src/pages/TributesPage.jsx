@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { Heart, ChevronLeft, ChevronRight } from 'lucide-react';
+import { Heart } from 'lucide-react';
 import { useLocation } from 'react-router-dom';
 import { getTributes } from '../services/tributeService';
 import TributeCard from '../components/tribute/TributeCard';
@@ -8,6 +8,7 @@ import PageIntro from '../components/common/PageIntro';
 import styles from './TributesPage.module.css';
 
 const ITEMS_PER_PAGE = 6;
+const MAX_PAGES_WINDOW = 10;
 
 export default function TributesPage() {
   const [tributes, setTributes] = useState([]);
@@ -68,6 +69,16 @@ export default function TributesPage() {
   const startIndex = (currentPage - 1) * ITEMS_PER_PAGE;
   const currentTributes = tributes.slice(startIndex, startIndex + ITEMS_PER_PAGE);
 
+  // 10-page block calculation (1..10, 11..20, etc.)
+  const currentBlock = Math.floor((currentPage - 1) / MAX_PAGES_WINDOW);
+  const startPage = currentBlock * MAX_PAGES_WINDOW + 1;
+  const endPage = Math.min(startPage + MAX_PAGES_WINDOW - 1, totalPages);
+
+  const visiblePages = [];
+  for (let i = startPage; i <= endPage; i++) {
+    visiblePages.push(i);
+  }
+
   function handlePageChange(newPage) {
     if (newPage < 1 || newPage > totalPages) return;
     setCurrentPage(newPage);
@@ -119,26 +130,27 @@ export default function TributesPage() {
                 ))}
               </div>
 
-              {/* Page-by-Page Pagination Controls */}
+              {/* Single-Row Clean Pagination: 1 2 3 ... 10  Next */}
               {totalPages > 1 && (
-                <nav className={styles.pagination} aria-label="Tributes pagination">
-                  <button
-                    type="button"
-                    className={styles.pageBtn}
-                    disabled={currentPage === 1}
-                    onClick={() => handlePageChange(currentPage - 1)}
-                    aria-label="Previous tributes page"
-                  >
-                    <ChevronLeft size={16} /> Prev
-                  </button>
+                <nav className={styles.paginationRow} aria-label="Tributes pagination">
+                  {currentPage > 1 && (
+                    <button
+                      type="button"
+                      className={styles.navTextBtn}
+                      onClick={() => handlePageChange(currentPage - 1)}
+                      aria-label="Previous page"
+                    >
+                      Prev
+                    </button>
+                  )}
 
-                  <div className={styles.pageNumbers}>
-                    {Array.from({ length: totalPages }, (_, i) => i + 1).map((num) => (
+                  <div className={styles.pageNumbersList}>
+                    {visiblePages.map((num) => (
                       <button
                         key={num}
                         type="button"
-                        className={`${styles.pageNumBtn} ${
-                          num === currentPage ? styles.activePage : ''
+                        className={`${styles.pageLink} ${
+                          num === currentPage ? styles.pageLinkActive : ''
                         }`}
                         onClick={() => handlePageChange(num)}
                         aria-current={num === currentPage ? 'page' : undefined}
@@ -148,15 +160,16 @@ export default function TributesPage() {
                     ))}
                   </div>
 
-                  <button
-                    type="button"
-                    className={styles.pageBtn}
-                    disabled={currentPage === totalPages}
-                    onClick={() => handlePageChange(currentPage + 1)}
-                    aria-label="Next tributes page"
-                  >
-                    Next <ChevronRight size={16} />
-                  </button>
+                  {currentPage < totalPages && (
+                    <button
+                      type="button"
+                      className={styles.navTextBtn}
+                      onClick={() => handlePageChange(currentPage + 1)}
+                      aria-label="Next page"
+                    >
+                      Next
+                    </button>
+                  )}
                 </nav>
               )}
             </>
