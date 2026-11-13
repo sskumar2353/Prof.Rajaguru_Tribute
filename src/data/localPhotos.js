@@ -45,12 +45,6 @@ export const localPhotos = [
     "alt": "Memorial photograph of Prof. Rajaguru"
   },
   {
-    "id": "local-photo-8",
-    "src": "/assets/IMG20251118114357.jpg",
-    "thumbnail": "/assets/IMG20251118114357.jpg",
-    "alt": "Memorial photograph of Prof. Rajaguru"
-  },
-  {
     "id": "local-photo-9",
     "src": "/assets/IMG20251118113812.jpg",
     "thumbnail": "/assets/IMG20251118113812.jpg",
@@ -2352,6 +2346,12 @@ export const localPhotos = [
     "id": "local-photo-392",
     "src": "/assets/memory_3.webp",
     "thumbnail": "/assets/memory_3.webp",
+    "alt": "Memorial photograph of Prof. Rajaguru"
+  },
+    {
+    "id": "local-photo-8",
+    "src": "/assets/IMG20251118114357.jpg",
+    "thumbnail": "/assets/IMG20251118114357.jpg",
     "alt": "Memorial photograph of Prof. Rajaguru"
   },
   {
