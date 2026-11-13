@@ -21,18 +21,6 @@ export const localPhotos = [
     "alt": "Memorial photograph of Prof. Rajaguru"
   },
   {
-    "id": "local-photo-4",
-    "src": "/assets/Rajaguru%20Uncle.png",
-    "thumbnail": "/assets/Rajaguru%20Uncle.png",
-    "alt": "Memorial photograph of Prof. Rajaguru"
-  },
-  {
-    "id": "local-photo-5",
-    "src": "/assets/Rajaguru%20Uncle%20(1).png",
-    "thumbnail": "/assets/Rajaguru%20Uncle%20(1).png",
-    "alt": "Memorial photograph of Prof. Rajaguru"
-  },
-  {
     "id": "local-photo-6",
     "src": "/assets/Prof.%20Rajaguru.jpg",
     "thumbnail": "/assets/Prof.%20Rajaguru.jpg",
